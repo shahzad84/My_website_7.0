@@ -1,1 +1,2 @@
-print("this is good")
+print("this is good and bad")
+
