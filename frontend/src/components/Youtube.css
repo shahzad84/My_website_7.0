@@ -97,12 +97,14 @@
   border-radius: 12px;
   overflow: hidden;
   background: rgba(20, 20, 30, 0.6);
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   display: flex;
   flex-direction: column;
   animation: slideInUp 0.6s ease-out 0.2s both;
   box-shadow: 0 0 30px rgba(0, 255, 163, 0.05), inset 0 1px 0 rgba(0, 255, 163, 0.1);
   cursor: pointer;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .yt-card::before {
@@ -482,4 +484,12 @@
     font-size: 0.65rem;
     padding: 0.3rem 0.6rem;
   }
+}
+
+.yt-grid {
+  animation: fadeIn 0.6s ease-out 0.3s both;
+}
+
+.yt-card {
+  animation: slideInUp 0.6s ease-out 0.2s both;
 }

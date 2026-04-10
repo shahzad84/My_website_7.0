@@ -5,8 +5,14 @@ import Home from "./components/Home";
 import Courses from "./components/Courses";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Youtube from "./components/Youtube"; 
+import ScrollToTop from "./components/ScrollToTop";
 /* Temporary pages */
-import VideoPage from "./components/VideoPage";                 
+import VideoPage from "./components/VideoPage"; 
+
+
+
+
+
 const Products = () => <div style={{ padding: "2rem" }}>Products Page</div>;
 const Contact = () => <div style={{ padding: "2rem" }}>Contact Page</div>;
 
@@ -16,7 +22,7 @@ function App() {
     <BrowserRouter>
       {/* Navbar always visible */}
       <Navbar />
-
+      <ScrollToTop />
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
