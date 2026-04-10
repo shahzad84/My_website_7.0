@@ -9,11 +9,8 @@ import ScrollToTop from "./components/ScrollToTop";
 /* Temporary pages */
 import VideoPage from "./components/VideoPage"; 
 import CoursePage from "./components/CoursePage";
-
-
-
-
-const Products = () => <div style={{ padding: "2rem" }}>Products Page</div>;
+import ProductPage from "./components/ProductPage";
+import Product from "./components/Product";
 const Contact = () => <div style={{ padding: "2rem" }}>Contact Page</div>;
 
 
@@ -28,11 +25,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/youtube/video/:id" element={<VideoPage />} />
         <Route path="/courses/Course/:id" element={<CoursePage />} />
+        <Route path="/products/product/:id" element={<ProductPage/>} />
       </Routes>
     </BrowserRouter>
   );
