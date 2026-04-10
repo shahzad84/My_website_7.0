@@ -11,9 +11,8 @@ import VideoPage from "./components/VideoPage";
 import CoursePage from "./components/CoursePage";
 import ProductPage from "./components/ProductPage";
 import Product from "./components/Product";
-const Contact = () => <div style={{ padding: "2rem" }}>Contact Page</div>;
-
-
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +31,7 @@ function App() {
         <Route path="/courses/Course/:id" element={<CoursePage />} />
         <Route path="/products/product/:id" element={<ProductPage/>} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

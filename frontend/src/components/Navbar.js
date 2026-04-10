@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // ✅ IMPORTANT
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -7,28 +7,62 @@ const Navbar = () => {
 
   const closeMenu = () => setOpen(false);
 
+  const navClass = ({ isActive }) =>
+    isActive ? "active" : "";
+
   return (
     <>
       <nav className="navbar">
+
         {/* LOGO */}
-        <Link to="/" className="nav-logo" onClick={closeMenu}>
+        <NavLink to="/" className="nav-logo" onClick={closeMenu}>
           Dev<span>Store</span>
-        </Link>
+        </NavLink>
 
         {/* DESKTOP LINKS */}
         <ul className="nav-links">
-          <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-          <li><Link to="/courses" onClick={closeMenu}>Courses</Link></li>
-          <li><Link to="/youtube" onClick={closeMenu}>YouTube</Link></li>
-          <li><Link to="/products" onClick={closeMenu}>Products</Link></li>
-          <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
+          <li>
+            <NavLink to="/" className={navClass} onClick={closeMenu}>
+              Home
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/about" className={navClass} onClick={closeMenu}>
+              About
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/courses" className={navClass} onClick={closeMenu}>
+              Courses
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/youtube" className={navClass} onClick={closeMenu}>
+              YouTube
+            </NavLink>
+          </li>
+
+          {/* STORE (Products Route) */}
+          <li>
+            <NavLink to="/products" className={navClass} onClick={closeMenu}>
+              Store
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/contact" className={navClass} onClick={closeMenu}>
+              Contact
+            </NavLink>
+          </li>
         </ul>
 
         {/* CTA */}
-        <Link to="/products" className="nav-cta">
+        <NavLink to="/products" className="nav-cta" onClick={closeMenu}>
           Shop Now →
-        </Link>
+        </NavLink>
 
         {/* HAMBURGER */}
         <button
@@ -43,12 +77,29 @@ const Navbar = () => {
 
       {/* MOBILE MENU */}
       <div className={`mobile-nav ${open ? "open" : ""}`}>
-        <Link to="/" onClick={closeMenu}>Home</Link>
-        <Link to="/about" onClick={closeMenu}>About</Link>
-        <Link to="/courses" onClick={closeMenu}>Courses</Link>
-        <Link to="/youtube" onClick={closeMenu}>YouTube</Link>
-        <Link to="/products" onClick={closeMenu}>Products</Link>
-        <Link to="/contact" onClick={closeMenu}>Contact</Link>
+        <NavLink to="/" className={navClass} onClick={closeMenu}>
+          Home
+        </NavLink>
+
+        <NavLink to="/about" className={navClass} onClick={closeMenu}>
+          About
+        </NavLink>
+
+        <NavLink to="/courses" className={navClass} onClick={closeMenu}>
+          Courses
+        </NavLink>
+
+        <NavLink to="/youtube" className={navClass} onClick={closeMenu}>
+          YouTube
+        </NavLink>
+
+        <NavLink to="/products" className={navClass} onClick={closeMenu}>
+          Store
+        </NavLink>
+
+        <NavLink to="/contact" className={navClass} onClick={closeMenu}>
+          Contact
+        </NavLink>
       </div>
     </>
   );
