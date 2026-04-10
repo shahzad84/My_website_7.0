@@ -140,7 +140,10 @@ const Youtube = () => {
             <div className="yt-card" key={i} onClick={() => navigate(`/youtube/video/${video.id}`, { state: video })}>
               {/* THUMBNAIL */}
               <div className="yt-thumb">
-                <img src={video.thumbnail} alt={video.title} />
+                <img
+                  src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
+                  alt={video.title}
+                />
                 <div className="play-btn">▶</div>
                 <div className="yt-badge">{video.duration}</div>
               </div>

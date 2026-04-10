@@ -1,17 +1,19 @@
 import React from "react";
 import "./FeaturedCourses.css";
-
+import { useNavigate } from "react-router-dom";
 const allCourses = [
   {
+    id:1,
     level: "Beginner",
     icon: "🚀",
-    title: "Full Stack Web Dev Bootcamp",
+    title: "Bootcamp",
     desc: "HTML to React to Node — build 5 real projects and land your first dev job.",
     price: "₹1,999",
     oldPrice: "₹3,999",
     tagClass: "tag-beginner",
   },
   {
+    id:2,
     level: "Intermediate",
     icon: "⚡",
     title: "React + Next.js Mastery",
@@ -21,6 +23,7 @@ const allCourses = [
     tagClass: "tag-inter",
   },
   {
+    id:3,
     level: "Advanced",
     icon: "🤖",
     title: "Python + AI/ML Deep Dive",
@@ -30,6 +33,7 @@ const allCourses = [
     tagClass: "tag-adv",
   },
   {
+    id:4,
     level: "Beginner",
     icon: "📱",
     title: "Mobile App Development with Flutter",
@@ -39,6 +43,7 @@ const allCourses = [
     tagClass: "tag-beginner",
   },
   {
+    id:5,
     level: "Intermediate",
     icon: "🎨",
     title: "UI/UX Design Masterclass",
@@ -48,6 +53,7 @@ const allCourses = [
     tagClass: "tag-inter",
   },
   {
+    id:6,
     level: "Advanced",
     icon: "🔐",
     title: "Cybersecurity & Ethical Hacking",
@@ -59,8 +65,10 @@ const allCourses = [
 ];
 
 const Courses = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="courses" style={{ paddingTop: "120px" }}>
+    <section className="courses">
       <div className="courses-header">
         <div>
           <p className="section-label">→ All Courses</p>
@@ -70,7 +78,13 @@ const Courses = () => {
 
       <div className="courses-grid">
         {allCourses.map((course, index) => (
-          <div className="course-card" key={index}>
+          <div
+            className="course-card"
+            key={course.id}
+            onClick={() =>
+              navigate(`/courses/course/${course.id}`, { state: course })
+            }
+          >
             <span className={`course-tag ${course.tagClass}`}>
               {course.level}
             </span>
@@ -86,7 +100,15 @@ const Courses = () => {
                 <span className="old">{course.oldPrice}</span>
               </div>
 
-              <button className="course-btn">Enroll →</button>
+              <button
+                className="course-btn"
+                onClick={(e) => {
+                  e.stopPropagation(); // 🔥 IMPORTANT FIX
+                  navigate(`/courses/course/${course.id}`, { state: course });
+                }}
+              >
+                Enroll →
+              </button>
             </div>
           </div>
         ))}

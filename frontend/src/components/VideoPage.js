@@ -35,7 +35,9 @@ const VideoPage = () => {
         {/* META */}
         <div className="video-meta">
           <span className="category-tag">{video.category}</span>
-          <span className="level-tag">{video.level}</span>
+          <span className={`level-tag level-${video.level.toLowerCase()}`}>
+            {video.level}
+          </span>
           <span className="duration">{video.duration}</span>
         </div>
 

@@ -8,7 +8,7 @@ import Youtube from "./components/Youtube";
 import ScrollToTop from "./components/ScrollToTop";
 /* Temporary pages */
 import VideoPage from "./components/VideoPage"; 
-
+import CoursePage from "./components/CoursePage";
 
 
 
@@ -32,6 +32,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/youtube/video/:id" element={<VideoPage />} />
+        <Route path="/courses/Course/:id" element={<CoursePage />} />
       </Routes>
     </BrowserRouter>
   );

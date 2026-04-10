@@ -4,6 +4,7 @@ import "./FeaturedCourses.css";
 
 const courses = [
   {
+    id:1,
     level: "Beginner",
     icon: "🚀",
     title: "Full Stack Web Dev Bootcamp",
@@ -13,6 +14,7 @@ const courses = [
     tagClass: "tag-beginner",
   },
   {
+    id:2,
     level: "Intermediate",
     icon: "⚡",
     title: "React + Next.js Mastery",
@@ -22,6 +24,7 @@ const courses = [
     tagClass: "tag-inter",
   },
   {
+    id:3,
     level: "Advanced",
     icon: "🤖",
     title: "Python + AI/ML Deep Dive",
@@ -31,6 +34,7 @@ const courses = [
     tagClass: "tag-adv",
   },
   {
+    id:4,
     level: "Beginner",
     icon: "📱",
     title: "Mobile App Development with Flutter",
@@ -40,6 +44,7 @@ const courses = [
     tagClass: "tag-beginner",
   },
   {
+    id:5,
     level: "Intermediate",
     icon: "🎨",
     title: "UI/UX Design Masterclass",
@@ -49,6 +54,7 @@ const courses = [
     tagClass: "tag-inter",
   },
   {
+    id:6,
     level: "Advanced",
     icon: "🔐",
     title: "Cybersecurity & Ethical Hacking",
@@ -77,7 +83,7 @@ const FeaturedCourses = () => {
 
       <div className="courses-grid">
         {featuredCourses.map((course, index) => (
-          <div className="course-card" key={index}>
+          <div className="course-card" key={index} onClick={() => navigate(`/courses/course/${course.id}`, { state: course })}>
             <span className={`course-tag ${course.tagClass}`}>
               {course.level}
             </span>
@@ -93,7 +99,15 @@ const FeaturedCourses = () => {
                 <span className="old">{course.oldPrice}</span>
               </div>
 
-              <button className="course-btn">Enroll →</button>
+              <button
+                className="course-btn"
+                onClick={(e) => {
+                  e.stopPropagation(); // 🔥 IMPORTANT FIX
+                  navigate(`/courses/course/${course.id}`, { state: course });
+                }}
+              >
+                Enroll →
+              </button>
             </div>
           </div>
         ))}
