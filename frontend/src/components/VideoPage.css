@@ -1,0 +1,48 @@
+.video-page {
+  background: var(--bg2);
+  min-height: 100vh;
+  padding: 3rem;
+}
+
+.video-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid rgba(0,255,163,0.3);
+  color: #00ffa3;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.video-player {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.video-player img {
+  width: 100%;
+  display: block;
+}
+
+.video-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.video-page h1 {
+  color: #e8e8f0;
+  margin-bottom: 1rem;
+}
+
+.video-page p {
+  color: #8b8b9c;
+  line-height: 1.6;
+}
