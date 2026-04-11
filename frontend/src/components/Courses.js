@@ -1,10 +1,14 @@
 import React from "react";
 import "./FeaturedCourses.css";
 import { useNavigate } from "react-router-dom";
+import { images } from "./images";
+import { useCart } from "../context/CartContext";
 const allCourses = [
   {
     id:1,
+    type: "course",
     level: "Beginner",
+    image: images.phone,
     icon: "🚀",
     title: "Bootcamp",
     desc: "HTML to React to Node — build 5 real projects and land your first dev job.",
@@ -14,7 +18,9 @@ const allCourses = [
   },
   {
     id:2,
+    type: "course",
     level: "Intermediate",
+    image: images.phone,
     icon: "⚡",
     title: "React + Next.js Mastery",
     desc: "Production-grade React patterns and full-stack apps.",
@@ -24,7 +30,9 @@ const allCourses = [
   },
   {
     id:3,
+    type: "course",
     level: "Advanced",
+    image: images.phone,
     icon: "🤖",
     title: "Python + AI/ML Deep Dive",
     desc: "Machine learning and AI products from scratch.",
@@ -34,7 +42,9 @@ const allCourses = [
   },
   {
     id:4,
+    type: "course",
     level: "Beginner",
+    image: images.phone,
     icon: "📱",
     title: "Mobile App Development with Flutter",
     desc: "Build beautiful cross-platform mobile apps from scratch.",
@@ -44,7 +54,9 @@ const allCourses = [
   },
   {
     id:5,
+    type: "course",
     level: "Intermediate",
+    image: images.phone,
     icon: "🎨",
     title: "UI/UX Design Masterclass",
     desc: "Learn design principles, Figma, and create stunning interfaces.",
@@ -54,7 +66,9 @@ const allCourses = [
   },
   {
     id:6,
+    type: "course",
     level: "Advanced",
+    image: images.phone,
     icon: "🔐",
     title: "Cybersecurity & Ethical Hacking",
     desc: "Master security concepts and penetration testing techniques.",
@@ -66,7 +80,7 @@ const allCourses = [
 
 const Courses = () => {
   const navigate = useNavigate();
-
+  const { addToCart } = useCart();
   return (
     <section className="courses">
       <div className="courses-header">
@@ -85,11 +99,18 @@ const Courses = () => {
               navigate(`/courses/course/${course.id}`, { state: course })
             }
           >
+            {/* IMAGE FIRST */}
+            <div className="course-image">
+              <img
+                src={course.image || images.phone}
+                alt={course.title}
+              />
+            </div>
             <span className={`course-tag ${course.tagClass}`}>
               {course.level}
             </span>
 
-            <div className="course-icon">{course.icon}</div>
+            {/* <div className="course-icon">{course.icon}</div> */}
 
             <h3 className="course-title">{course.title}</h3>
             <p className="course-desc">{course.desc}</p>
@@ -103,11 +124,22 @@ const Courses = () => {
               <button
                 className="course-btn"
                 onClick={(e) => {
-                  e.stopPropagation(); // 🔥 IMPORTANT FIX
-                  navigate(`/courses/course/${course.id}`, { state: course });
+                  e.stopPropagation();
+
+                  const mappedCourse = {
+                    id: course.id,
+                    title: course.title,
+                    price: course.price,
+                    oldPrice: course.oldPrice,
+                    image: course.image || images.phone,
+                    type: "course",
+                  };
+
+                  addToCart(mappedCourse);
+                  navigate("/cart"); // optional
                 }}
               >
-                Enroll →
+                Add to Cart
               </button>
             </div>
           </div>

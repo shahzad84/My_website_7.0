@@ -82,15 +82,14 @@ export default function Product() {
           <div className="section-label">Products</div>
           <h1 className="section-title">Featured Items</h1>
         </div>
-        <button className="btn-outline">Add to Wishlist</button>
+        <button className="btn-outline" onClick={() => navigate("/cart")}>
+          Cart
+        </button>
       </div>
 
       <div className="courses-grid">
         {products.map((item) => (
           <div className="course-card" key={item.id} onClick={() => navigate(`/products/product/${item.id}`, { state: item })}>
-            <div className={`course-tag tag-${item.category.toLowerCase()}`}>
-              {item.category}
-            </div>
 
             {/* <div className={`course-icon icon-${item.category.toLowerCase()}`}>
               {item.icon}
@@ -110,7 +109,9 @@ export default function Product() {
                 }}
               />
             </div>
-
+            <div className={`course-tag tag-${item.category.toLowerCase()}`}>
+              {item.category}
+            </div>
             <h2 className="course-title">{item.title}</h2>
 
             <p className="course-desc">{item.desc}</p>

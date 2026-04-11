@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./FeaturedCourses.css";
-
+import { images } from "./images";
+import { useCart } from "../context/CartContext";
 const courses = [
   {
-    id:1,
+    id: 1,
     level: "Beginner",
-    icon: "🚀",
+    image: "https://via.placeholder.com/300",
     title: "Full Stack Web Dev Bootcamp",
     desc: "HTML to React to Node — build 5 real projects and land your first dev job.",
     price: "₹1,999",
@@ -14,9 +15,9 @@ const courses = [
     tagClass: "tag-beginner",
   },
   {
-    id:2,
+    id: 2,
     level: "Intermediate",
-    icon: "⚡",
+    image: "https://via.placeholder.com/300",
     title: "React + Next.js Mastery",
     desc: "Production-grade React patterns and full-stack apps.",
     price: "₹2,499",
@@ -24,71 +25,51 @@ const courses = [
     tagClass: "tag-inter",
   },
   {
-    id:3,
+    id: 3,
     level: "Advanced",
-    icon: "🤖",
+    image: "https://via.placeholder.com/300",
     title: "Python + AI/ML Deep Dive",
     desc: "Machine learning and AI products from scratch.",
     price: "₹3,499",
     oldPrice: "₹6,999",
     tagClass: "tag-adv",
   },
-  {
-    id:4,
-    level: "Beginner",
-    icon: "📱",
-    title: "Mobile App Development with Flutter",
-    desc: "Build beautiful cross-platform mobile apps from scratch.",
-    price: "₹2,199",
-    oldPrice: "₹4,499",
-    tagClass: "tag-beginner",
-  },
-  {
-    id:5,
-    level: "Intermediate",
-    icon: "🎨",
-    title: "UI/UX Design Masterclass",
-    desc: "Learn design principles, Figma, and create stunning interfaces.",
-    price: "₹1,799",
-    oldPrice: "₹3,699",
-    tagClass: "tag-inter",
-  },
-  {
-    id:6,
-    level: "Advanced",
-    icon: "🔐",
-    title: "Cybersecurity & Ethical Hacking",
-    desc: "Master security concepts and penetration testing techniques.",
-    price: "₹4,299",
-    oldPrice: "₹7,999",
-    tagClass: "tag-adv",
-  },
 ];
 
 const FeaturedCourses = () => {
   const navigate = useNavigate();
-  const featuredCourses = courses.slice(0, 3);
-
+  const { addToCart } = useCart();
   return (
-    <section id="courses" className="courses">
+    <section className="courses">
       <div className="courses-header">
         <div>
           <p className="section-label">→ Learn With Us</p>
           <h2 className="section-title">Featured Courses</h2>
         </div>
+
         <button className="btn-outline" onClick={() => navigate("/courses")}>
           View All Courses →
         </button>
       </div>
 
       <div className="courses-grid">
-        {featuredCourses.map((course, index) => (
-          <div className="course-card" key={index} onClick={() => navigate(`/courses/course/${course.id}`, { state: course })}>
+        {courses.map((course) => (
+          <div
+            className="course-card"
+            key={course.id}
+            onClick={() =>
+              navigate(`/courses/course/${course.id}`, { state: course })
+            }
+          >
+            {/* IMAGE (MATCH MAIN PAGE) */}
+            <div className="course-image">
+              <img src={course.image} alt={course.title} />
+            </div>
+
+            {/* TAG */}
             <span className={`course-tag ${course.tagClass}`}>
               {course.level}
             </span>
-
-            <div className="course-icon">{course.icon}</div>
 
             <h3 className="course-title">{course.title}</h3>
             <p className="course-desc">{course.desc}</p>
@@ -102,11 +83,22 @@ const FeaturedCourses = () => {
               <button
                 className="course-btn"
                 onClick={(e) => {
-                  e.stopPropagation(); // 🔥 IMPORTANT FIX
-                  navigate(`/courses/course/${course.id}`, { state: course });
+                  e.stopPropagation();
+
+                  const mappedCourse = {
+                    id: course.id,
+                    title: course.title,
+                    price: course.price,
+                    oldPrice: course.oldPrice,
+                    image: course.image || images.phone,
+                    type: "course",
+                  };
+
+                  addToCart(mappedCourse);
+                  navigate("/cart"); // optional
                 }}
               >
-                Enroll →
+                Add to Cart
               </button>
             </div>
           </div>

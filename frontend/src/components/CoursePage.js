@@ -1,10 +1,12 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./CoursePage.css";
-
+import { images } from "./images";
+import { useCart } from "../context/CartContext";
 const CoursePage = () => {
   const { state: course } = useLocation();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   if (!course) {
     return <p>No course found</p>;
@@ -20,37 +22,64 @@ const CoursePage = () => {
         </button>
 
         {/* HERO CARD */}
+        {/* HERO CARD */}
         <div className="course-hero">
 
-            {/* ICON (missing before) */}
-            <div className="course-icon large">{course.icon}</div>
+          {/* LEFT SIDE (IMAGE) */}
+          <div className="course-image">
+            <img
+              src={course.image || images.phone}
+              alt={course.title}
+            />
+          </div>
 
-            {/* TAG */}
+          {/* RIGHT SIDE (INFO) */}
+          <div className="course-info">
+
             <span className={`course-tag ${course.tagClass}`}>
-                {course.level}
+              {course.level}
             </span>
 
             <h1>{course.title}</h1>
             <p>{course.desc}</p>
 
-            {/* META → only show if exists */}
+            {/* META */}
             <div className="course-meta">
-                {course.duration && <span>⏱ {course.duration}</span>}
-                {course.lessons && <span>📚 {course.lessons} lessons</span>}
-                {course.category && <span>👨‍💻 {course.category}</span>}
+              {course.duration && <span>⏱ {course.duration}</span>}
+              {course.lessons && <span>📚 {course.lessons} lessons</span>}
+              {course.category && <span>👨‍💻 {course.category}</span>}
             </div>
 
-            {/* PRICE FIX */}
+            {/* ACTIONS */}
             <div className="course-actions">
-                <div className="course-price">
+              <div className="course-price">
                 {course.price}
                 <span className="old">{course.oldPrice}</span>
-                </div>
+              </div>
 
-                <button className="enroll-btn">Enroll Now</button>
+              <button
+                className="course-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+
+                  addToCart({
+                    id: course.id,
+                    title: course.title,
+                    price: course.price,
+                    oldPrice: course.oldPrice,
+                    image: course.image || images.phone,
+                    type: "course",
+                  });
+
+                  navigate("/cart");
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
 
-            </div>
+          </div>
+        </div>
 
         {/* COURSE CONTENT */}
         <div className="course-content">

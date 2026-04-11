@@ -1,10 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ProductPage.css";
-
+import { useCart } from "../context/CartContext";
 const ProductPage = () => {
   const { state: product } = useLocation();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   if (!product) {
     return <p>No product found</p>;
@@ -46,7 +47,16 @@ const ProductPage = () => {
                 <span className="old">{product.oldPrice}</span>
               </div>
 
-              <button className="buy-btn">Buy Now</button>
+              <button
+                className="course-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addToCart(product);   // 🔥 THIS IS REQUIRED
+                  navigate("/cart");
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

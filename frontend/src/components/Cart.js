@@ -14,6 +14,10 @@ export default function Cart() {
   const navigate = useNavigate();
   return (
     <div className="cart">
+      {/* BACK BUTTON */}
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
       {/* HEADER */}
       <div className="cart-header">
         <h1>Your Cart</h1>
