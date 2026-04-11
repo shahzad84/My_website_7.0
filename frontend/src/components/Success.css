@@ -1,0 +1,85 @@
+.success {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-card {
+  text-align: center;
+  padding: 3rem;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, rgba(123, 92, 255, 0.05), rgba(0, 255, 163, 0.03));
+  border: 1.5px solid rgba(0, 255, 163, 0.2);
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.success h1 {
+  margin-bottom: 1rem;
+}
+
+.success p {
+  color: #8b8b9c;
+  margin-bottom: 2rem;
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.success-actions button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  background: #00ffa3;
+  color: #0a0a0f;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.success-actions .outline {
+  background: transparent;
+  border: 1px solid #00ffa3;
+  color: #00ffa3;
+}
+
+@media (max-width: 768px) {
+
+  .success {
+    padding: 1.2rem;
+    align-items: center; /* keep centered */
+  }
+
+  .success-card {
+    width: 100%;
+    max-width: 100%;     /* full width but controlled */
+    padding: 2rem 1.4rem;
+
+    border-radius: 10px; /* keep card feel */
+  }
+
+  .success h1 {
+    font-size: 1.5rem;
+  }
+
+  .success p {
+    font-size: 0.9rem;
+  }
+
+  .success-actions {
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .success-actions button {
+    width: 100%;
+  }
+}

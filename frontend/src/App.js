@@ -13,6 +13,10 @@ import ProductPage from "./components/ProductPage";
 import Product from "./components/Product";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Cart from "./components/Cart";
+import Success from "./components/Success";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,9 +28,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/cart" element={<Cart/>}/>
         <Route path="/products" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/youtube" element={<Youtube />} />
+        <Route path="/success" element={<Success />} />
         <Route path="/youtube/video/:id" element={<VideoPage />} />
         <Route path="/courses/Course/:id" element={<CoursePage />} />
         <Route path="/products/product/:id" element={<ProductPage/>} />

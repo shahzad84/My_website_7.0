@@ -4,6 +4,7 @@ import "./Product.css";
 import { useNavigate } from "react-router-dom";
 import { images } from "./images";
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
 const products = [
   {
     id: 1,
@@ -73,6 +74,7 @@ const products = [
 export default function Product() {
   const navigate = useNavigate();
   const [ratios, setRatios] = useState({});
+  const { addToCart } = useCart();
   return (
     <div className="courses">
       <div className="courses-header">
@@ -119,7 +121,16 @@ export default function Product() {
                 <span className="old">{item.oldPrice}</span>
               </div>
 
-              <button className="course-btn">Add to Cart</button>
+              <button
+                className="course-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addToCart(item);   // 🔥 THIS IS REQUIRED
+                  navigate("/cart");
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         ))}

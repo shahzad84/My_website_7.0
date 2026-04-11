@@ -1,0 +1,131 @@
+.cart {
+  padding: 2rem 3rem;
+  max-width: 1200px;
+  margin: auto;
+  color: #e8e8f0;
+  min-height: calc(100vh - 180px); /* 🔥 pushes footer down */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.cart-header {
+  margin-bottom: 2rem;
+}
+
+.cart-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Grid */
+.cart-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card */
+.cart-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(123, 92, 255, 0.05), rgba(0, 255, 163, 0.03));
+  border: 1.5px solid rgba(0, 255, 163, 0.2);
+  padding: 1.5rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+/* Image */
+.cart-image {
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  background: #0a0a0f;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cart-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Info */
+.cart-info {
+  flex: 1;
+}
+
+.cart-info h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.cart-price {
+  color: #00ffa3;
+  font-weight: 700;
+}
+
+.cart-price span {
+  margin-left: 0.5rem;
+  text-decoration: line-through;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* Actions */
+.cart-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-actions button {
+  background: transparent;
+  border: 1px solid #00ffa3;
+  color: #00ffa3;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cart-actions span {
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Remove */
+.remove-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #ff4f6a;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Summary */
+.cart-summary {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,255,163,0.1);
+  padding-top: 1rem;
+}
+
+.checkout-btn {
+  background: #00ffa3;
+  color: #0a0a0f;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
