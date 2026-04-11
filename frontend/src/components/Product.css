@@ -165,6 +165,28 @@
   color: #0a0a0f;
 }
 
+.course-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;        /* ✅ SAME SIZE for all cards */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a0a0f;
+  position: relative;         /* needed for overlay */
+  margin-bottom: 1rem;
+}
+
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* ✅ clean fill */
+  object-position: center;    /* keeps focus */
+  transition: transform 0.3s ease;
+}
+
+.course-card:hover .course-image img {
+  transform: scale(1.05);
+}
+
 /* COURSES RESPONSIVE STYLE (FIX MOBILE LOOK) */
 @media (max-width: 900px) {
   .courses {

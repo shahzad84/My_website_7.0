@@ -2,6 +2,8 @@
 import React from "react";
 import "./Product.css";
 import { useNavigate } from "react-router-dom";
+import { images } from "./images";
+import { useState } from "react";
 const products = [
   {
     id: 1,
@@ -10,7 +12,7 @@ const products = [
     price: "₹2,999",
     oldPrice: "₹4,999",
     category: "Accessories",
-    icon: "⌨️",
+    image: images.phone,
   },
   {
     id: 2,
@@ -19,7 +21,7 @@ const products = [
     price: "₹1,499",
     oldPrice: "₹2,499",
     category: "Accessories",
-    icon: "🖱️",
+    image:images.keyboard,
   },
   {
     id: 3,
@@ -28,7 +30,7 @@ const products = [
     price: "₹4,499",
     oldPrice: "₹6,999",
     category: "Accessories",
-    icon: "⌨️",
+    image: images.phone,
   },
   {
     id: 4,
@@ -37,7 +39,7 @@ const products = [
     price: "₹3,999",
     oldPrice: "₹5,999",
     category: "Audio",
-    icon: "🎧",
+    image:images.keyboard,
   },
   {
     id: 5,
@@ -46,7 +48,7 @@ const products = [
     price: "₹899",
     oldPrice: "₹1,499",
     category: "Accessories",
-    icon: "💻",
+    image:images.keyboard,
   },
   {
     id: 6,
@@ -55,7 +57,7 @@ const products = [
     price: "₹1,299",
     oldPrice: "₹2,199",
     category: "Tech",
-    icon: "🔌",
+    image: images.phone,
   },
   {
     id: 7,
@@ -64,12 +66,13 @@ const products = [
     price: "₹2,999",
     oldPrice: "₹4,499",
     category: "Wearables",
-    icon: "⌚",
+    image:images.keyboard,
   },
 ];
 
 export default function Product() {
   const navigate = useNavigate();
+  const [ratios, setRatios] = useState({});
   return (
     <div className="courses">
       <div className="courses-header">
@@ -87,8 +90,23 @@ export default function Product() {
               {item.category}
             </div>
 
-            <div className={`course-icon icon-${item.category.toLowerCase()}`}>
+            {/* <div className={`course-icon icon-${item.category.toLowerCase()}`}>
               {item.icon}
+            </div> */}
+            <div className={`course-image ${ratios[item.id]}`}>
+              <img
+                src={item.image}
+                alt={item.title}
+                onLoad={(e) => {
+                  const { naturalWidth, naturalHeight } = e.target;
+                  const isSquare = Math.abs(naturalWidth - naturalHeight) < 50;
+
+                  setRatios(prev => ({
+                    ...prev,
+                    [item.id]: isSquare ? "square" : "rect"
+                  }));
+                }}
+              />
             </div>
 
             <h2 className="course-title">{item.title}</h2>
