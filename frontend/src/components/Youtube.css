@@ -197,22 +197,28 @@
 /* RESPONSIVE (match courses behavior) */
 @media (max-width: 768px) {
   .yt {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
   }
 
-  .yt-grid {
-    gap: 1.3rem;
-  }
-
-  .yt-card {
-    padding: 2rem;
+  .yt-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
   }
 
   .yt-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .section-desc {
+    display: none;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
   }
 }
-
 @media (max-width: 480px) {
   .yt {
     padding: 3rem 0.75rem;
