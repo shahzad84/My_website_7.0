@@ -206,8 +206,25 @@
     gap: 0.8rem;
   }
 
+  /* keep layout same */
   .product-actions {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+  }
+
+  /* 🔥 PRICE INLINE */
+  .product-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* 🔥 BUTTON SAME ROW (right side) */
+  .product-actions .buy-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 }

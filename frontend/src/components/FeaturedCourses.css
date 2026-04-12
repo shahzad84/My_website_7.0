@@ -278,50 +278,25 @@
 }
 
 @media (max-width: 768px) {
-  .courses {
-    padding: 4rem 1rem;
+
+  .course-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* 🔥 IMPORTANT */
+    gap: 0.8rem;
   }
 
-  .section-title {
-    font-size: clamp(1.6rem, 4vw, 2.5rem);
-    margin-top: 0.8rem;
+  .course-price {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
   }
 
-  .courses-header {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 2rem;
-    gap: 1.5rem;
-  }
-
-  .btn-outline {
-    width: 100%;
-    text-align: center;
-    padding: 0.7rem 1.5rem;
-  }
-
-  .courses-grid {
-    gap: 1.3rem;
-  }
-
-  .course-card {
-    padding: 1.8rem;
-  }
-
-  .course-title {
-    font-size: 1.15rem;
-    margin-bottom: 0.7rem;
-  }
-
-  .course-desc {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .course-icon {
-    font-size: 2.2rem;
-    width: 48px;
-    height: 48px;
+  .course-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 }
 
