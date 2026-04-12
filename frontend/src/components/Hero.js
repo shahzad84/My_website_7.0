@@ -1,7 +1,8 @@
 import React from "react";
 import "./Hero.css";
-
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section id="home" className="hero">
       {/* Background effects */}
@@ -26,12 +27,12 @@ const Hero = () => {
         </p>
 
         <div className="hero-btns">
-          <a href="#courses" className="btn-primary">
+          <button className="btn-primary" onClick={() => navigate("/courses")}>
             Browse Courses →
-          </a>
-          <a href="#products" className="btn-outline">
+          </button>
+          <button className="btn-outline" onClick={() => navigate("/products")}>
             ⚡ Shop Products
-          </a>
+          </button>
         </div>
 
         <div className="hero-stats">
