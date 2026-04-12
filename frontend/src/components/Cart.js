@@ -8,20 +8,22 @@ export default function Cart() {
 
   // ✅ Calculate total dynamically
   const total = cart.reduce((acc, item) => {
-    const price = Number(item.price.replace(/[^0-9]/g, ""));
+    const price = parseInt(item.price?.replace(/[^\d]/g, ""), 10) || 0;
     return acc + price * item.qty;
   }, 0);
+  const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
   const navigate = useNavigate();
   return (
     <div className="cart">
       {/* BACK BUTTON */}
-        <button className="back-btn" onClick={() => navigate(-1)}>
-          ← Back
-        </button>
+      
       {/* HEADER */}
       <div className="cart-header">
+        <button className="back-btn" onClick={() => navigate(-1)}>
+         ← Back
+        </button>
         <h1>Your Cart</h1>
-        <p>{cart.length} items</p>
+        <p>{totalItems} item{totalItems !== 1 && "s"}</p>
       </div>
 
       {/* EMPTY STATE */}
@@ -32,7 +34,7 @@ export default function Cart() {
           {/* CART ITEMS */}
           <div className="cart-grid">
             {cart.map((item) => (
-              <div className="cart-card" key={item.id}>
+              <div className="cart-card" key={`${item.type}-${item.id}`}>
                 
                 {/* IMAGE */}
                 <div className="cart-image">
@@ -50,16 +52,16 @@ export default function Cart() {
 
                   {/* ACTIONS */}
                   <div className="cart-actions">
-                    <button onClick={() => decreaseQty(item.id)}>-</button>
+                    <button onClick={() => decreaseQty(item.id, item.type)}>-</button>
                     <span>{item.qty}</span>
-                    <button onClick={() => increaseQty(item.id)}>+</button>
+                    <button onClick={() => increaseQty(item.id, item.type)}>+</button>
                   </div>
                 </div>
 
                 {/* REMOVE */}
                 <button
                   className="remove-btn"
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(item.id, item.type)}
                 >
                   ✕
                 </button>

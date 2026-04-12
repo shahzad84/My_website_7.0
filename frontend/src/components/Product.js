@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { images } from "./images";
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
+
 const products = [
   {
-    id: 1,
+    id: "product-1",
+    type: "product",
     title: "Mechanical Keyboard",
     desc: "Premium RGB keyboard for developers",
     price: "₹2,999",
@@ -16,7 +18,8 @@ const products = [
     image: images.phone,
   },
   {
-    id: 2,
+    id: "product-2",
+    type: "product",
     title: "Gaming Mouse",
     desc: "High precision RGB gaming mouse",
     price: "₹1,499",
@@ -25,7 +28,8 @@ const products = [
     image:images.keyboard,
   },
   {
-    id: 3,
+    id: "product-3",
+    type: "product",
     title: "Mechanical Keyboard Pro",
     desc: "Hot-swappable switches with RGB lighting",
     price: "₹4,499",
@@ -34,7 +38,8 @@ const products = [
     image: images.phone,
   },
   {
-    id: 4,
+    id: "product-4",
+    type: "product",
     title: "Wireless Headphones",
     desc: "Noise cancelling over-ear headphones",
     price: "₹3,999",
@@ -43,7 +48,8 @@ const products = [
     image:images.keyboard,
   },
   {
-    id: 5,
+    id: "product-5",
+    type: "product",
     title: "Laptop Stand",
     desc: "Aluminium ergonomic adjustable stand",
     price: "₹899",
@@ -52,7 +58,8 @@ const products = [
     image:images.keyboard,
   },
   {
-    id: 6,
+    id: "product-6",
+    type: "product",
     title: "USB-C Hub",
     desc: "7-in-1 multiport adapter for laptops",
     price: "₹1,299",
@@ -61,7 +68,8 @@ const products = [
     image: images.phone,
   },
   {
-    id: 7,
+    id: "product-7",
+    type: "product",
     title: "Smartwatch",
     desc: "Fitness tracking with AMOLED display",
     price: "₹2,999",
@@ -123,7 +131,7 @@ export default function Product() {
               </div>
 
               <button
-                className="course-btn"
+                className="buy-btn"
                 onClick={(e) => {
                   e.stopPropagation();
                   addToCart(item);   // 🔥 THIS IS REQUIRED

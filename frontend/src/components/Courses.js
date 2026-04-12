@@ -3,9 +3,9 @@ import "./FeaturedCourses.css";
 import { useNavigate } from "react-router-dom";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
-const allCourses = [
+export const courses = [
   {
-    id:1,
+    id: "course-1",
     type: "course",
     level: "Beginner",
     image: images.phone,
@@ -17,7 +17,7 @@ const allCourses = [
     tagClass: "tag-beginner",
   },
   {
-    id:2,
+    id: "course-2",
     type: "course",
     level: "Intermediate",
     image: images.phone,
@@ -29,7 +29,7 @@ const allCourses = [
     tagClass: "tag-inter",
   },
   {
-    id:3,
+    id: "course-3",
     type: "course",
     level: "Advanced",
     image: images.phone,
@@ -41,7 +41,7 @@ const allCourses = [
     tagClass: "tag-adv",
   },
   {
-    id:4,
+    id: "course-4",
     type: "course",
     level: "Beginner",
     image: images.phone,
@@ -53,7 +53,7 @@ const allCourses = [
     tagClass: "tag-beginner",
   },
   {
-    id:5,
+    id: "course-5",
     type: "course",
     level: "Intermediate",
     image: images.phone,
@@ -65,7 +65,7 @@ const allCourses = [
     tagClass: "tag-inter",
   },
   {
-    id:6,
+    id: "course-6",
     type: "course",
     level: "Advanced",
     image: images.phone,
@@ -91,7 +91,7 @@ const Courses = () => {
       </div>
 
       <div className="courses-grid">
-        {allCourses.map((course, index) => (
+        {courses.map((course, index) => (
           <div
             className="course-card"
             key={course.id}
@@ -122,7 +122,7 @@ const Courses = () => {
               </div>
 
               <button
-                className="course-btn"
+                className="buy-btn"
                 onClick={(e) => {
                   e.stopPropagation();
 

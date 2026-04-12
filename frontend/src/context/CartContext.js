@@ -15,14 +15,16 @@ export function CartProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // ✅ Add to cart
+  // ✅ Add to cart (FIXED with id + type)
   const addToCart = (product) => {
     setCart((prev) => {
-      const exist = prev.find((item) => item.id === product.id);
+      const exist = prev.find(
+        (item) => item.id === product.id && item.type === product.type
+      );
 
       if (exist) {
         return prev.map((item) =>
-          item.id === product.id
+          item.id === product.id && item.type === product.type
             ? { ...item, qty: item.qty + 1 }
             : item
         );
@@ -32,27 +34,29 @@ export function CartProvider({ children }) {
     });
   };
 
-  // ✅ Remove item
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  // ✅ Remove item (FIXED)
+  const removeFromCart = (id, type) => {
+    setCart((prev) =>
+      prev.filter((item) => !(item.id === id && item.type === type))
+    );
   };
 
-  // ✅ Increase qty
-  const increaseQty = (id) => {
+  // ✅ Increase qty (FIXED)
+  const increaseQty = (id, type) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id
+        item.id === id && item.type === type
           ? { ...item, qty: item.qty + 1 }
           : item
       )
     );
   };
 
-  // ✅ Decrease qty
-  const decreaseQty = (id) => {
+  // ✅ Decrease qty (FIXED)
+  const decreaseQty = (id, type) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id && item.qty > 1
+        item.id === id && item.type === type && item.qty > 1
           ? { ...item, qty: item.qty - 1 }
           : item
       )

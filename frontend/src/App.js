@@ -34,7 +34,7 @@ function App() {
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/success" element={<Success />} />
         <Route path="/youtube/video/:id" element={<VideoPage />} />
-        <Route path="/courses/Course/:id" element={<CoursePage />} />
+        <Route path="/courses/course/:id" element={<CoursePage />} />
         <Route path="/products/product/:id" element={<ProductPage/>} />
       </Routes>
       <Footer />

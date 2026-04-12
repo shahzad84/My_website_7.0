@@ -3,38 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./FeaturedCourses.css";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
-const courses = [
-  {
-    id: 1,
-    level: "Beginner",
-    image: "https://via.placeholder.com/300",
-    title: "Full Stack Web Dev Bootcamp",
-    desc: "HTML to React to Node — build 5 real projects and land your first dev job.",
-    price: "₹1,999",
-    oldPrice: "₹3,999",
-    tagClass: "tag-beginner",
-  },
-  {
-    id: 2,
-    level: "Intermediate",
-    image: "https://via.placeholder.com/300",
-    title: "React + Next.js Mastery",
-    desc: "Production-grade React patterns and full-stack apps.",
-    price: "₹2,499",
-    oldPrice: "₹4,999",
-    tagClass: "tag-inter",
-  },
-  {
-    id: 3,
-    level: "Advanced",
-    image: "https://via.placeholder.com/300",
-    title: "Python + AI/ML Deep Dive",
-    desc: "Machine learning and AI products from scratch.",
-    price: "₹3,499",
-    oldPrice: "₹6,999",
-    tagClass: "tag-adv",
-  },
-];
+import { courses } from "./Courses";
 
 const FeaturedCourses = () => {
   const navigate = useNavigate();
@@ -53,7 +22,7 @@ const FeaturedCourses = () => {
       </div>
 
       <div className="courses-grid">
-        {courses.map((course) => (
+        {courses.slice(0, 3).map((course) => (
           <div
             className="course-card"
             key={course.id}
@@ -81,7 +50,7 @@ const FeaturedCourses = () => {
               </div>
 
               <button
-                className="course-btn"
+                className="buy-btn"
                 onClick={(e) => {
                   e.stopPropagation();
 
