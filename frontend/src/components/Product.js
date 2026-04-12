@@ -90,9 +90,9 @@ export default function Product() {
           <div className="section-label">Products</div>
           <h1 className="section-title">Featured Items</h1>
         </div>
-        <button className="btn-outline" onClick={() => navigate("/cart")}>
+        {/* <button className="btn-outline" onClick={() => navigate("/cart")}>
           Cart
-        </button>
+        </button> */}
       </div>
 
       <div className="courses-grid">
