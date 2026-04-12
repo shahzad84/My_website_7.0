@@ -136,3 +136,95 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================= */
+/* ✅ FORM VALIDATION ADD-ONS */
+/* ============================= */
+
+/* Error text (below inputs) */
+.error {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+
+/* Status message (success / error) */
+.form-status {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Disabled button */
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Input focus (soft glow — does NOT change layout) */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #00ffa3;
+  box-shadow: 0 0 6px rgba(0, 255, 163, 0.25);
+}
+
+/* Optional: subtle invalid state (only when error exists) */
+input.error-border,
+textarea.error-border {
+  border-color: #ff4d4d !important;
+}
+
+/* ========================= */
+/* 🌍 PHONE INPUT DARK THEME */
+/* ========================= */
+
+/* Main container */
+.react-tel-input {
+  width: 100%;
+}
+
+/* Input field */
+.react-tel-input .form-control {
+  width: 100% !important;
+  background: rgba(20, 20, 30, 0.6) !important;
+  border: 1px solid rgba(0, 255, 163, 0.2) !important;
+  color: #e8e8f0 !important;
+  border-radius: 8px !important;
+  padding-left: 48px !important;
+  height: 42px;
+}
+
+/* Focus state */
+.react-tel-input .form-control:focus {
+  border-color: #00ffa3 !important;
+  box-shadow: 0 0 8px rgba(0, 255, 163, 0.3) !important;
+}
+
+/* Country dropdown button */
+.react-tel-input .flag-dropdown {
+  background: rgba(20, 20, 30, 0.6) !important;
+  border: 1px solid rgba(0, 255, 163, 0.2) !important;
+  border-radius: 8px 0 0 8px !important;
+}
+
+/* Dropdown list */
+.react-tel-input .country-list {
+  background: #0a0a0f !important;
+  color: #e8e8f0 !important;
+  border: 1px solid rgba(0, 255, 163, 0.2) !important;
+}
+
+/* Hover country item */
+.react-tel-input .country-list .country:hover {
+  background: rgba(0, 255, 163, 0.1) !important;
+}
+
+/* Selected country */
+.react-tel-input .country-list .country.highlight {
+  background: rgba(0, 255, 163, 0.15) !important;
+}
+.react-tel-input .selected-flag {
+  background: transparent !important;
+  border-radius: 8px 0 0 8px !important;
+}
