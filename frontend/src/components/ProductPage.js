@@ -1,57 +1,94 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./ProductPage.css";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import styles from "./ProductPage.module.css";
 import { useCart } from "../context/CartContext";
+import { useSiteContent } from "../context/SiteContentContext";
+import { images } from "./images";
+
 const ProductPage = () => {
-  const { state: product } = useLocation();
+  const { id } = useParams(); // ✅ URL ID
+  const { products } = useSiteContent(); // ✅ global data
+  const location = useLocation();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+
+  // ✅ try state first
+  let product = location.state;
+
+  // ✅ fallback (refresh safe)
+  if (!product) {
+    product = products.find((p) => String(p.id) === String(id));
+  }
 
   if (!product) {
     return <p>No product found</p>;
   }
 
   return (
-    <section className="product-page">
-      <div className="product-container">
+    <section className={styles.productPage}>
+      <div className={styles.productPageContainer}>
 
-        {/* BACK BUTTON */}
-        <button className="back-btn" onClick={() => navigate(-1)}>
+        <button className={styles.productPageBackBtn} onClick={() => navigate(-1)}>
           ← Back
         </button>
 
-        {/* HERO */}
-        <div className="product-hero">
+        <div className={styles.productPageHero}>
 
           {/* IMAGE */}
-          <div className="product-image">
-            <img src={product.image} alt={product.title} />
+          <div className={styles.productPageImage}>
+            <img
+              src={product.image || images.phone}
+              alt={product.title}
+            />
           </div>
 
           {/* CONTENT */}
-          <div className="product-info">
-            <span className="product-tag">{product.category}</span>
+          <div className={styles.productPageInfo}>
+            <div
+              className={`${styles.productPageTag} ${
+                product.category === "Accessories"
+                  ? styles.tagAccessories
+                  : product.category === "Audio"
+                  ? styles.tagAudio
+                  : product.category === "Tech"
+                  ? styles.tagTech
+                  : styles.tagWearables
+              }`}
+            >
+                {product.category}
+              </div>
 
             <h1>{product.title}</h1>
             <p>{product.desc}</p>
 
-            <div className="product-meta">
+            <div className={styles.productPageMeta}>
               <span>⭐ {product.rating || "4.5"}</span>
               <span>🚚 Free Delivery</span>
               <span>🔒 Secure Payment</span>
             </div>
 
-            <div className="product-actions">
-              <div className="product-price">
+            <div className={styles.productPageActions}>
+              <div className={styles.productPagePrice}>
                 {product.price}
-                <span className="old">{product.oldPrice}</span>
+                {product.oldPrice && (
+                  <span className={styles.old}>{product.oldPrice}</span>
+                )}
               </div>
 
               <button
-                className="course-btn"
+                className={styles.productPageBuyBtn}
                 onClick={(e) => {
                   e.stopPropagation();
-                  addToCart(product);   // 🔥 THIS IS REQUIRED
+
+                  addToCart({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    oldPrice: product.oldPrice,
+                    image: product.image || images.phone,
+                    type: "product",
+                  });
+
                   navigate("/cart");
                 }}
               >
@@ -61,14 +98,13 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* EXTRA SECTION */}
-        <div className="product-details">
+        {/* 🔥 DYNAMIC DETAILS */}
+        <div className={styles.productPageDetails}>
           <h2>Product Details</h2>
           <ul>
-            <li>✔ Premium quality material</li>
-            <li>✔ Long-lasting durability</li>
-            <li>✔ Modern aesthetic design</li>
-            <li>✔ 7-day replacement guarantee</li>
+            {(product.details || []).map((item, i) => (
+              <li key={i}>✔ {item}</li>
+            ))}
           </ul>
         </div>
 

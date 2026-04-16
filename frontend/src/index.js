@@ -4,11 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CartProvider } from './context/CartContext';
+import { SiteContentProvider } from './context/SiteContentContext'; // ✅ ADD THIS
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CartProvider><App /></CartProvider>
-    
+    <SiteContentProvider>   {/* ✅ ADD THIS */}
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </SiteContentProvider>
   </React.StrictMode>
 );
 

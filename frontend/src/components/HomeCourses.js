@@ -1,77 +1,52 @@
 import React from "react";
-import styles from "./Courses.module.css";
 import { useNavigate } from "react-router-dom";
+import styles from "./Courses.module.css";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
 
-const Courses = () => {
+const HomeCourses = () => {
+  const { courses, loading } = useSiteContent();
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
-  // 🔥 dynamic data from Google Sheets
-  const { courses, loading, usingFallback } = useSiteContent();
-
-  // ✅ loading state
-  if (loading) {
-    return (
-      <section className={styles.courses}>
-        <p className={styles.loadingText}>Loading courses...</p>
-      </section>
-    );
-  }
-
-  // ✅ empty state
-  if (!courses || courses.length === 0) {
-    return (
-      <section className={styles.courses}>
-        <p className={styles.emptyText}>No courses available right now.</p>
-      </section>
-    );
-  }
+  const featuredCourses = (courses || []).length
+  ? courses.some((c) => c.featured)
+    ? courses.filter((c) => c.featured).slice(0, 3)
+    : courses.slice(0, 3)
+  : [];
 
   return (
     <section className={styles.courses}>
       <div className={styles.coursesHeader}>
         <div>
-          <p className={styles.sectionLabel}>→ All Courses</p>
-          <h2 className={styles.sectionTitle}>Complete Course Catalog</h2>
-          <p className={styles.sectionDesc}>
-            Learn real-world skills with structured courses designed to help you
-            build, ship, and grow as a developer.
-          </p>
-
-          {/* optional debug */}
-          {usingFallback?.courses && (
-            <p className={styles.fallbackWarning}>
-              Showing default courses (Sheet not connected)
-            </p>
-          )}
+          <p className={styles.sectionLabel}>→ Learn With Us</p>
+          <h2 className={styles.sectionTitle}>Featured Courses</h2>
         </div>
+
+        <button className={styles.btnOutline} onClick={() => navigate("/courses")}>
+          View All Courses →
+        </button>
       </div>
 
-      <div className={styles.coursesGrid}>
-        {courses.map((course) => {
-          const imageSrc = course.image || images.phone;
-
-          return (
+      {/* ✅ LOADING STATE */}
+      {loading ? (
+        <div className={styles.coursesLoading}>Loading courses...</div>
+      ) : (
+        <div className={styles.coursesGrid}>
+          {featuredCourses.map((course) => (
             <div
               className={styles.courseCard}
               key={course.id}
               onClick={() =>
-                navigate(`/courses/course/${course.id}`, {
-                  state: course,
-                })
+                navigate(`/courses/course/${course.id}`, { state: course })
               }
             >
-              {/* IMAGE */}
-              {/* THUMBNAIL */}
               <div className={styles.courseThumb}>
-                <img src={imageSrc} alt={course.title} />
+                <img src={course.image} alt={course.title} />
                 <div className={styles.courseOverlay}>View Course</div>
               </div>
 
-              {/* LEVEL TAG */}
               <span
                 className={`${styles.courseTag} ${
                   course.level === "Beginner"
@@ -84,13 +59,9 @@ const Courses = () => {
                 {course.level}
               </span>
 
-              {/* TITLE */}
               <h3 className={styles.courseTitle}>{course.title}</h3>
-
-              {/* DESCRIPTION */}
               <p className={styles.courseDesc}>{course.desc}</p>
 
-              {/* META */}
               <div className={styles.courseMeta}>
                 <div className={styles.coursePrice}>
                   {course.price}
@@ -109,7 +80,7 @@ const Courses = () => {
                       title: course.title,
                       price: course.price,
                       oldPrice: course.oldPrice,
-                      image: imageSrc,
+                      image: course.image || images.phone,
                       type: "course",
                     };
 
@@ -121,11 +92,11 @@ const Courses = () => {
                 </button>
               </div>
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };
 
-export default Courses;
+export default HomeCourses;

@@ -21,7 +21,7 @@
 }
 
 /* GRID */
-.about-inner {
+.aboutInner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
@@ -35,7 +35,7 @@
 }
 
 /* CARD */
-.about-card {
+.aboutCard {
   background: linear-gradient(135deg, rgba(123, 92, 255, 0.05) 0%, rgba(0, 255, 163, 0.03) 100%);
   border: 1px solid rgba(0, 255, 163, 0.2);
   padding: 2.5rem;
@@ -47,13 +47,13 @@
   box-shadow: 0 0 30px rgba(0, 255, 163, 0.05), inset 0 1px 0 rgba(0, 255, 163, 0.1);
 }
 
-.about-card:hover {
+.aboutCard:hover {
   border-color: rgba(0, 255, 163, 0.4);
   box-shadow: 0 0 40px rgba(0, 255, 163, 0.15), inset 0 1px 0 rgba(0, 255, 163, 0.2);
   transform: translateY(-4px);
 }
 
-.about-card::before {
+.aboutCard::before {
   content: '';
   position: absolute;
   top: 0;
@@ -64,7 +64,7 @@
 }
 
 /* CODE */
-.about-code {
+.aboutCode {
   font-family: 'Space Mono', monospace;
   font-size: 0.85rem;
   line-height: 1.9;
@@ -73,21 +73,21 @@
   animation: slideInCode 0.6s ease-out 0.1s both;
 }
 
-.about-code::-webkit-scrollbar {
+.aboutCode::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
-.about-code::-webkit-scrollbar-track {
+.aboutCode::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.about-code::-webkit-scrollbar-thumb {
+.aboutCode::-webkit-scrollbar-thumb {
   background: rgba(0, 255, 163, 0.3);
   border-radius: 3px;
 }
 
-.about-code::-webkit-scrollbar-thumb:hover {
+.aboutCode::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 255, 163, 0.5);
 }
 
@@ -103,7 +103,7 @@
 }
 
 /* FLOATING TAG */
-.about-floating {
+.aboutFloating {
   position: absolute;
   bottom: 15px;
   right: 30px;
@@ -125,7 +125,7 @@
 }
 
 /* TEXT SIDE */
-.section-label {
+.sectionLabel {
   font-size: 0.72rem;
   color: #00ffa3;
   letter-spacing: 0.2em;
@@ -136,7 +136,7 @@
   animation: slideInDown 0.6s ease-out 0s both;
 }
 
-.section-title {
+.sectionTitle {
   font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 800;
@@ -149,7 +149,7 @@
   animation: slideInDown 0.6s ease-out 0.1s both;
 }
 
-.section-desc {
+.sectionDesc {
   color: #8b8b9c;
   margin-bottom: 1.3rem;
   line-height: 1.8;
@@ -158,14 +158,14 @@
 }
 
 /* SKILLS */
-.skills-grid {
+.skillsGrid {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 2.5rem;
 }
 
-.skill-tag {
+.skillTag {
   font-size: 0.75rem;
   padding: 0.65rem 1.2rem;
   border: 1.5px solid rgba(0, 255, 163, 0.2);
@@ -180,7 +180,7 @@
   white-space: nowrap;
 }
 
-.skill-tag:hover {
+.skillTag:hover {
   border-color: #00ffa3;
   color: #00ffa3;
   background: rgba(0, 255, 163, 0.1);
@@ -189,7 +189,7 @@
 }
 
 /* CORNERS */
-.corner-brackets {
+.cornerBrackets {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
@@ -201,7 +201,7 @@
   transition: all 0.3s ease;
 }
 
-.corner-brackets2 {
+.cornerBrackets2 {
   position: absolute;
   bottom: 1.5rem;
   left: 1.5rem;
@@ -213,8 +213,8 @@
   transition: all 0.3s ease;
 }
 
-.about-card:hover .corner-brackets,
-.about-card:hover .corner-brackets2 {
+.aboutCard:hover .cornerBrackets,
+.aboutCard:hover .cornerBrackets2 {
   opacity: 1;
   box-shadow: 0 0 15px rgba(0, 255, 163, 0.3);
 }
@@ -236,7 +236,7 @@
     padding: 6rem 1.5rem;
   }
 
-  .about-inner {
+  .aboutInner {
     grid-template-columns: 1fr;
     gap: 3.5rem;
   }
@@ -247,47 +247,47 @@
     padding: 4rem 1rem;
   }
 
-  .about-inner {
+  .aboutInner {
     gap: 2rem;
   }
 
-  .about-card {
+  .aboutCard {
     padding: 2rem;
     border-radius: 10px;
   }
 
-  .section-title {
+  .sectionTitle {
     font-size: clamp(1.6rem, 5vw, 2.8rem);
     margin-bottom: 1.5rem;
   }
 
-  .section-label {
+  .sectionLabel {
     margin-bottom: 0.8rem;
   }
 
-  .section-desc {
+  .sectionDesc {
     font-size: 0.98rem;
     margin-bottom: 1rem;
     line-height: 1.7;
   }
 
-  .about-code {
+  .aboutCode {
     font-size: 0.8rem;
     line-height: 1.8;
   }
 
-  .skill-tag {
+  .skillTag {
     font-size: 0.72rem;
     padding: 0.55rem 1rem;
   }
 
-  .skills-grid {
+  .skillsGrid {
     gap: 0.7rem;
     margin-top: 2rem;
   }
 
-  .corner-brackets,
-  .corner-brackets2 {
+  .cornerBrackets,
+  .cornerBrackets2 {
     width: 24px;
     height: 24px;
     border-width: 1.5px;
@@ -299,49 +299,49 @@
     padding: 2.5rem 0.75rem;
   }
 
-  .about-card {
+  .aboutCard {
     padding: 1.5rem;
     border-radius: 8px;
   }
 
-  .section-title {
+  .sectionTitle {
     font-size: 1.4rem;
     margin-bottom: 1.2rem;
   }
 
-  .section-label {
+  .sectionLabel {
     font-size: 0.65rem;
     margin-bottom: 0.6rem;
   }
 
-  .section-desc {
+  .sectionDesc {
     font-size: 0.9rem;
     margin-bottom: 0.9rem;
   }
 
-  .about-code {
+  .aboutCode {
     font-size: 0.75rem;
     line-height: 1.6;
   }
 
-  .about-floating {
+  .aboutFloating {
     font-size: 0.65rem;
     padding: 0.6rem 1rem;
     border-radius: 6px;
   }
 
-  .skill-tag {
+  .skillTag {
     font-size: 0.68rem;
     padding: 0.5rem 0.9rem;
   }
 
-  .skills-grid {
+  .skillsGrid {
     gap: 0.6rem;
     margin-top: 1.5rem;
   }
 
-  .corner-brackets,
-  .corner-brackets2 {
+  .cornerBrackets,
+  .cornerBrackets2 {
     display: none;
   }
 }

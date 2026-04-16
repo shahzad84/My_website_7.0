@@ -1,5 +1,5 @@
 import React from "react";
-import "./Cart.css";
+import styles from "./Cart.module.css";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
@@ -14,12 +14,12 @@ export default function Cart() {
   const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
   const navigate = useNavigate();
   return (
-    <div className="cart">
+    <div className={styles.cart}>
       {/* BACK BUTTON */}
       
       {/* HEADER */}
-      <div className="cart-header">
-        <button className="back-btn" onClick={() => navigate(-1)}>
+      <div className={styles.cartHeader}>
+        <button className={styles.backBtn} onClick={() => navigate(-1)}>
          ← Back
         </button>
         <h1>Your Cart</h1>
@@ -32,26 +32,26 @@ export default function Cart() {
       ) : (
         <>
           {/* CART ITEMS */}
-          <div className="cart-grid">
+          <div className={styles.cartGrid}>
             {cart.map((item) => (
-              <div className="cart-card" key={`${item.type}-${item.id}`}>
+              <div className={styles.cartCard} key={`${item.type}-${item.id}`}>
                 
                 {/* IMAGE */}
-                <div className="cart-image">
+                <div className={styles.cartImage}>
                   <img src={item.image} alt={item.title} />
                 </div>
 
                 {/* INFO */}
-                <div className="cart-info">
+                <div className={styles.cartInfo}>
                   <h2>{item.title}</h2>
 
-                  <div className="cart-price">
+                  <div className={styles.cartPrice}>
                     {item.price}
                     <span>{item.oldPrice}</span>
                   </div>
 
                   {/* ACTIONS */}
-                  <div className="cart-actions">
+                  <div className={styles.cartActions}>
                     <button onClick={() => decreaseQty(item.id, item.type)}>-</button>
                     <span>{item.qty}</span>
                     <button onClick={() => increaseQty(item.id, item.type)}>+</button>
@@ -60,7 +60,7 @@ export default function Cart() {
 
                 {/* REMOVE */}
                 <button
-                  className="remove-btn"
+                  className={styles.removeBtn}
                   onClick={() => removeFromCart(item.id, item.type)}
                 >
                   ✕
@@ -70,10 +70,10 @@ export default function Cart() {
           </div>
 
           {/* SUMMARY */}
-          <div className="cart-summary">
+          <div className={styles.cartSummary}>
             <h2>Total: ₹{total.toLocaleString()}</h2>
             <button
-              className="checkout-btn"
+              className={styles.checkoutBtn}
               onClick={() => {
                 setCart([]);          // ✅ clear cart
                 navigate("/success"); // ✅ go to thank you page

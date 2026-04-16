@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import "./Contact.css";
+import styles from "./Contact.module.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { submitContactMessage } from "../api/googleSheetApi";
+
+
+
 const Contact = () => {
 
   const [formData, setFormData] = useState({
@@ -106,10 +110,7 @@ const Contact = () => {
       setLoading(true);
       setStatus("");
 
-      await fetch(process.env.REACT_APP_GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
+      await submitContactMessage(formData);
 
       setStatus("✅ Message sent!");
 
@@ -130,53 +131,53 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact">
-      <div className="contact-inner">
+    <section className={styles.contact}>
+      <div className={styles.contactInner}>
 
         {/* LEFT SIDE */}
-        <div className="contact-info">
+        <div className={styles.contactInfo}>
 
-          <p className="section-label">Get in Touch</p>
-          <h2 className="section-title">
+          <p className={styles.sectionLabel}>Get in Touch</p>
+          <h2 className={styles.sectionTitle}>
             Let's Build Something Together
           </h2>
 
-          <p className="section-desc">
+          <p className={styles.sectionDesc}>
             Have a custom project, collab idea, or just want to say hi? Reach out — we respond fast.
           </p>
 
-          <div className="contact-links">
+          <div className={styles.contactLinks}>
 
-            <a href="mailto:hello@devstore.in" className="contact-link">
-              <div className="contact-icon">✉️</div>
+            <a href="mailto:hello@devstore.in" className={styles.contactLink}>
+              <div className={styles.contactIcon}>✉️</div>
               <div>
-                <div className="lbl">Email</div>
-                <div className="val">hello@devstore.in</div>
+                <div className={styles.lbl}>Email</div>
+                <div className={styles.val}>hello@devstore.in</div>
               </div>
             </a>
 
-            <a href="https://youtube.com" className="contact-link" target="_blank" rel="noreferrer">
-              <div className="contact-icon">📺</div>
+            <a href="https://youtube.com" className={styles.contactLink} target="_blank" rel="noreferrer">
+              <div className={styles.contactIcon}>📺</div>
               <div>
-                <div className="lbl">YouTube</div>
-                <div className="val">youtube.com/@channel</div>
+                <div className={styles.lbl}>YouTube</div>
+                <div className={styles.val}>youtube.com/@channel</div>
               </div>
             </a>
 
-            <a href="https://twitter.com" className="contact-link" target="_blank" rel="noreferrer">
-              <div className="contact-icon">𝕏</div>
+            <a href="https://twitter.com" className={styles.contactLink} target="_blank" rel="noreferrer">
+              <div className={styles.contactIcon}>𝕏</div>
               <div>
-                <div className="lbl">Twitter / X</div>
-                <div className="val">@handle</div>
+                <div className={styles.lbl}>Twitter / X</div>
+                <div className={styles.val}>@handle</div>
               </div>
             </a>
 
             {/* ✅ ADDED INSTAGRAM BACK */}
-            <a href="https://instagram.com" className="contact-link" target="_blank" rel="noreferrer">
-              <div className="contact-icon">📸</div>
+            <a href="https://instagram.com" className={styles.contactLink} target="_blank" rel="noreferrer">
+              <div className={styles.contactIcon}>📸</div>
               <div>
-                <div className="lbl">Instagram</div>
-                <div className="val">@yourhandle</div>
+                <div className={styles.lbl}>Instagram</div>
+                <div className={styles.val}>@yourhandle</div>
               </div>
             </a>
 
@@ -184,10 +185,10 @@ const Contact = () => {
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="contact-form">
+        <div className={styles.contactForm}>
 
-          <div className="form-title">Send a Message</div>
-          <div className="form-sub">
+          <div className={styles.formTitle}>Send a Message</div>
+          <div className={styles.formSub}>
             We usually reply within 24 hours.
           </div>
 
@@ -198,7 +199,7 @@ const Contact = () => {
             value={formData.name}
             onChange={handleChange}
           />
-          {errors.name && <p className="error">{errors.name}</p>}
+          {errors.name && <p className={styles.error}>{errors.name}</p>}
 
           <input
             type="email"
@@ -209,9 +210,9 @@ const Contact = () => {
             inputMode="email"
             autoComplete="email"
             spellCheck="false"
-            className={errors.email ? "error-border" : ""}
+            className={errors.email ? styles.errorBorder : ""}
           />
-          {errors.email && <p className="error">{errors.email}</p>}
+          {errors.email && <p className={styles.error}>{errors.email}</p>}
 
           <PhoneInput
             country={"in"}
@@ -233,7 +234,7 @@ const Contact = () => {
               marginBottom: "1rem"
             }}
           />
-          {errors.phone && <p className="error">{errors.phone}</p>}
+          {errors.phone && <p className={styles.error}>{errors.phone}</p>}
 
           <textarea
             name="message"
@@ -241,17 +242,17 @@ const Contact = () => {
             value={formData.message}
             onChange={handleChange}
           />
-          {errors.message && <p className="error">{errors.message}</p>}
+          {errors.message && <p className={styles.error}>{errors.message}</p>}
 
           <button
-            className="form-submit"
+            className={styles.formSubmit}
             onClick={handleSubmit}
             disabled={loading}
           >
             {loading ? "Sending..." : "Send Message →"}
           </button>
 
-          {status && <p className="form-status">{status}</p>}
+          {status && <p className={styles.formStatus}>{status}</p>}
 
         </div>
 

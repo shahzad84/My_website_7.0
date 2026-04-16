@@ -1,17 +1,17 @@
-.product-page {
+.productPage {
   min-height: 100vh;
   padding: 3rem;
   background: var(--bg2);
 }
 
 /* CONTAINER */
-.product-container {
+.productPageContainer {
   max-width: 1100px;
   margin: auto;
 }
 
 /* BACK BUTTON */
-.back-btn {
+.productPageBackBtn {
   border: 1.5px solid rgba(0, 255, 163, 0.3);
   background: rgba(0, 255, 163, 0.02);
   padding: 0.6rem 1.5rem;
@@ -23,20 +23,19 @@
   transition: 0.3s;
 }
 
-.back-btn:hover {
+.productPageBackBtn:hover {
   background: rgba(0, 255, 163, 0.1);
   box-shadow: 0 0 15px rgba(0, 255, 163, 0.2);
   transform: translateY(-2px);
 }
 
 /* HERO CARD (product main layout) */
-.product-hero {
+.productPageHero {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
 
-  min-height: 420px;   /* 👈 reduced from 520px */
-  padding: 2.8rem 2.2rem; /* 👈 increased vertical space */
+  padding: 2.8rem 2.2rem;
 
   background: linear-gradient(
     135deg,
@@ -49,15 +48,17 @@
 
   backdrop-filter: blur(10px);
 
-  box-shadow: 0 0 30px rgba(0, 255, 163, 0.05),
-              inset 0 1px 0 rgba(0, 255, 163, 0.1);
+  box-shadow:
+    0 0 30px rgba(0, 255, 163, 0.05),
+    inset 0 1px 0 rgba(0, 255, 163, 0.1);
 
   position: relative;
   overflow: hidden;
+
+  animation: slideInUp 0.6s ease-out both;
 }
 
-/* glow line */
-.product-hero::before {
+.productPageHero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -73,28 +74,28 @@
 }
 
 /* IMAGE */
-.product-image img {
+.productPageImage img {
   width: 100%;
   border-radius: 12px;
   object-fit: cover;
 }
 
 /* CONTENT */
-.product-info h1 {
+.productPageInfo h1 {
   font-size: 2.2rem;
   font-weight: 800;
   margin: 1rem 0;
   color: #e8e8f0;
 }
 
-.product-info p {
+.productPageInfo p {
   color: #8b8b9c;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
 /* TAG */
-.product-tag {
+.productPageTag {
   display: inline-block;
   padding: 0.5rem 1rem;
   font-size: 0.7rem;
@@ -108,7 +109,7 @@
 }
 
 /* META */
-.product-meta {
+.productPageMeta {
   display: flex;
   gap: 1.2rem;
   color: #8b8b9c;
@@ -117,15 +118,38 @@
 }
 
 /* ACTIONS */
-.product-actions {
+.productPageActions {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
 }
 
+.tagAccessories {
+  background: rgba(0, 255, 163, 0.15);
+  color: #00ffa3;
+  border: 1px solid rgba(0, 255, 163, 0.3);
+}
+
+.tagAudio {
+  background: rgba(123, 92, 255, 0.15);
+  color: #7b5cff;
+  border: 1px solid rgba(123, 92, 255, 0.3);
+}
+
+.tagTech {
+  background: rgba(255, 167, 38, 0.15);
+  color: #ffa726;
+  border: 1px solid rgba(255, 167, 38, 0.3);
+}
+
+.tagWearables {
+  background: rgba(255, 79, 106, 0.15);
+  color: #ff4f6a;
+  border: 1px solid rgba(255, 79, 106, 0.3);
+}
 /* BUTTON */
-.buy-btn {
+.productPageBuyBtn {
   border: 1.5px solid #00ffa3;
   background: linear-gradient(
     135deg,
@@ -141,7 +165,7 @@
   transition: 0.3s;
 }
 
-.buy-btn:hover {
+.productPageBuyBtn:hover {
   background: #00ffa3;
   color: #0a0a0f;
   box-shadow: 0 4px 20px rgba(0, 255, 163, 0.3);
@@ -149,13 +173,13 @@
 }
 
 /* PRICE */
-.product-price {
+.productPagePrice {
   font-size: 1.4rem;
   font-weight: 800;
   color: #00ffa3;
 }
 
-.product-price .old {
+.productPagePrice .old {
   font-size: 1rem;
   margin-left: 0.5rem;
   text-decoration: line-through;
@@ -163,7 +187,7 @@
 }
 
 /* DETAILS SECTION */
-.product-details {
+.productPageDetails {
   margin-top: 2.5rem;
   background: rgba(20, 20, 30, 0.6);
   border: 1px solid rgba(0, 255, 163, 0.15);
@@ -171,43 +195,43 @@
   padding: 2rem;
 }
 
-.product-details h2 {
+.productPageDetails h2 {
   color: #e8e8f0;
   margin-bottom: 1rem;
 }
 
-.product-details ul {
+.productPageDetails ul {
   list-style: none;
   padding: 0;
 }
 
-.product-details li {
+.productPageDetails li {
   color: #8b8b9c;
   margin-bottom: 0.8rem;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .product-page {
+  .productPage {
     padding: 2rem 1rem;
   }
 
-  .product-hero {
+  .productPageHero {
     grid-template-columns: 1fr;
     padding: 1.8rem;
   }
 
-  .product-info h1 {
+  .productPageInfo h1 {
     font-size: 1.6rem;
   }
 
-  .product-meta {
+  .productPageMeta {
     flex-wrap: wrap;
     gap: 0.8rem;
   }
 
   /* keep layout same */
-  .product-actions {
+  .productPageActions {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
@@ -215,14 +239,14 @@
   }
 
   /* 🔥 PRICE INLINE */
-  .product-price {
+  .productPagePrice {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
   }
 
   /* 🔥 BUTTON SAME ROW (right side) */
-  .product-actions .buy-btn {
+  .productPageActions .productPageBuyBtn {
     position: absolute;
     right: 0;
     bottom: 0;

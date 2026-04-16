@@ -19,7 +19,7 @@
   border-radius: 50%;
 }
 
-.section-label {
+.courses .sectionLabel {
   font-size: 0.72rem;
   color: #00ffa3;
   letter-spacing: 0.2em;
@@ -29,7 +29,8 @@
   animation: slideInDown 0.6s ease-out 0s both;
 }
 
-.section-title {
+.courses .sectionTitle {
+  font-family: 'Syne', sans-serif; 
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 800;
   margin-top: 1rem;
@@ -40,16 +41,33 @@
   line-height: 1.1;
   animation: slideInDown 0.6s ease-out 0.1s both;
 }
-
-.courses-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.8rem;
-  gap: 2rem;
+.coursesLoading {
+  text-align: center;
+  margin-top: 2rem;
+  color: #8b8b9c;
 }
 
-.btn-outline {
+.coursesHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+.courses .sectionDesc {
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.7;
+  margin-top: 0.6rem;
+
+  background: linear-gradient(135deg, #8b8b9c, #e8e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+.btnOutline {
   border: 1.5px solid rgba(0, 255, 163, 0.3);
   background: rgba(0, 255, 163, 0.02);
   padding: 0.75rem 1.8rem;
@@ -64,7 +82,7 @@
   white-space: nowrap;
 }
 
-.btn-outline:hover {
+.btnOutline:hover {
   border-color: #00ffa3;
   color: #00ffa3;
   background: rgba(0, 255, 163, 0.1);
@@ -72,32 +90,39 @@
   transform: translateY(-3px);
 }
 
-.courses-grid {
+.coursesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   position: relative;
   z-index: 1;
-  margin-top: -1.5rem;
+  margin-top: 1.5rem;
 }
 
-.course-card {
+.loadingText,
+.emptyText {
+  color: #8b8b9c;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+.courseCard {
   background: linear-gradient(135deg, rgba(123, 92, 255, 0.05) 0%, rgba(0, 255, 163, 0.03) 100%);
   border: 1.5px solid rgba(0, 255, 163, 0.2);
   padding: 2.5rem;
   border-radius: 12px;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(0, 255, 163, 0.05), inset 0 1px 0 rgba(0, 255, 163, 0.1);
+  /* backdrop-filter: blur(10px); */
+  box-shadow: 0 0 20px rgba(0,255,163,0.05);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  animation: slideInUp 0.6s ease-out 0.2s both;
+  animation: slideInUp 0.6s ease-out both;
 }
 
-.course-card::before {
+.courseCard::before {
   content: '';
   position: absolute;
   top: 0;
@@ -107,17 +132,24 @@
   background: linear-gradient(90deg, transparent, rgba(0, 255, 163, 0.3), transparent);
 }
 
-.course-card:hover {
+.courseCard:hover {
   transform: translateY(-6px);
   border-color: rgba(0, 255, 163, 0.4);
-  box-shadow: 0 0 40px rgba(0, 255, 163, 0.15), inset 0 1px 0 rgba(0, 255, 163, 0.2);
+  box-shadow: 0 0 40px rgba(0,255,163,0.15);
   background: linear-gradient(135deg, rgba(123, 92, 255, 0.08) 0%, rgba(0, 255, 163, 0.05) 100%);
 }
 
-.course-tag {
+.courseCard:nth-child(1) { animation-delay: 0.1s; }
+.courseCard:nth-child(2) { animation-delay: 0.2s; }
+.courseCard:nth-child(3) { animation-delay: 0.3s; }
+.courseCard:nth-child(4) { animation-delay: 0.4s; }
+.courseCard:nth-child(5) { animation-delay: 0.5s; }
+.courseCard:nth-child(6) { animation-delay: 0.6s; }
+
+.courseTag {
   font-size: 0.7rem;
   padding: 0.6rem 1.2rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.6rem;
   display: inline-block;
   border-radius: 8px;
   font-family: 'Space Mono', monospace;
@@ -127,29 +159,29 @@
   transition: all 0.3s ease;
 }
 
-.tag-beginner {
+.tagBeginner {
   background: rgba(0, 255, 163, 0.15);
   color: #00ffa3;
   border: 1px solid rgba(0, 255, 163, 0.3);
 }
 
-.tag-inter {
+.tagInter {
   background: rgba(123, 92, 255, 0.15);
   color: #7b5cff;
   border: 1px solid rgba(123, 92, 255, 0.3);
 }
 
-.tag-adv {
+.tagAdv {
   background: rgba(255, 79, 106, 0.15);
   color: #ff6b85;
   border: 1px solid rgba(255, 79, 106, 0.3);
 }
 
-.course-card:hover .course-tag {
+.courseCard:hover .courseTag {
   transform: translateY(-2px);
 }
 
-.course-icon {
+/* .course-icon {
   font-size: 2.8rem;
   margin-bottom: 1.2rem;
   display: flex;
@@ -167,9 +199,9 @@
   background: rgba(0, 255, 163, 0.2);
   border-color: rgba(0, 255, 163, 0.4);
   transform: scale(1.08);
-}
+} */
 
-.course-title {
+.courseTitle {
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 0.8rem;
@@ -177,7 +209,7 @@
   color: #e8e8f0;
 }
 
-.course-desc {
+.courseDesc {
   font-size: 0.95rem;
   color: #8b8b9c;
   margin: 0 0 1.8rem 0;
@@ -185,7 +217,8 @@
   flex-grow: 1;
 }
 
-.course-meta {
+.courseMeta {
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -194,7 +227,7 @@
   border-top: 1px solid rgba(0, 255, 163, 0.1);
 }
 
-.course-price {
+.coursePrice {
   font-size: 1.5rem;
   font-weight: 800;
   color: #00ffa3;
@@ -203,14 +236,14 @@
   gap: 0.5rem;
 }
 
-.course-price .old {
+.coursePrice .old {
   font-size: 0.9rem;
   text-decoration: line-through;
   color: #6b6b80;
   font-weight: 500;
 }
 
-.course-btn {
+.courseBtn {
   border: 1.5px solid #00ffa3;
   background: linear-gradient(135deg, rgba(0, 255, 163, 0.1) 0%, transparent 100%);
   color: #00ffa3;
@@ -225,11 +258,17 @@
   backdrop-filter: blur(5px);
 }
 
-.course-btn:hover {
+.courseBtn:hover {
   background: #00ffa3;
   color: #0a0a0f;
   box-shadow: 0 4px 15px rgba(0, 255, 163, 0.3);
   transform: translateY(-2px);
+}
+
+.fallbackWarning {
+  color: #ffcc00;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
 }
 
 @keyframes slideInDown {
@@ -260,41 +299,42 @@
     padding: 6rem 1.5rem;
   }
 
-  .section-title {
+  .sectionTitle {
     font-size: clamp(1.8rem, 5vw, 3rem);
   }
 
-  .courses-header {
+  .coursesHeader {
     margin-bottom: 2.5rem;
   }
 
-  .courses-grid {
+  .coursesGrid {
     gap: 1.5rem;
   }
 
-  .course-card {
+  .courseCard {
     padding: 2rem;
   }
 }
 
 @media (max-width: 768px) {
 
-  .course-meta {
+  .courseMeta {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap; /* 🔥 IMPORTANT */
     gap: 0.8rem;
   }
 
-  .course-price {
+  .coursePrice {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     white-space: nowrap;
   }
 
-  .course-btn {
+  .courseBtn {
     flex-shrink: 0;
     white-space: nowrap;
   }
@@ -309,70 +349,120 @@
     display: none;
   }
 
-  .section-label {
+  .sectionLabel {
     font-size: 0.65rem;
   }
 
-  .section-title {
+  .sectionTitle {
     font-size: 1.4rem;
     margin-top: 0.6rem;
   }
 
-  .courses-header {
+  .coursesHeader {
     flex-direction: column;
     align-items: stretch;
     margin-bottom: 1.5rem;
     gap: 1rem;
   }
 
-  .btn-outline {
+  .btnOutline {
     width: 100%;
     padding: 0.65rem 1.2rem;
     font-size: 0.78rem;
   }
 
-  .courses-grid {
+  .coursesGrid {
     gap: 1rem;
     grid-template-columns: 1fr;
   }
 
-  .course-card {
+  .courseCard {
     padding: 1.5rem;
   }
 
-  .course-tag {
+  .courseTag {
     font-size: 0.65rem;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
   }
 
-  .course-icon {
+  .courseIcon {
     font-size: 2rem;
     width: 44px;
     height: 44px;
     margin-bottom: 1rem;
   }
 
-  .course-title {
+  .courseTitle {
     font-size: 1.05rem;
+     margin-top: 0.2rem;
     margin-bottom: 0.6rem;
   }
 
-  .course-desc {
+  .courseDesc {
     font-size: 0.85rem;
     margin-bottom: 1.2rem;
   }
 
-  .course-price {
+  .coursePrice {
     font-size: 1.3rem;
   }
 
-  .course-btn {
+  .courseBtn {
     padding: 0.6rem 1.2rem;
     font-size: 0.75rem;
   }
 
-  .course-meta {
+  .courseMeta {
     padding-top: 1rem;
   }
+}
+
+/* THUMBNAIL (same as yt-thumb) */
+.courseThumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 1.2rem;
+}
+
+.courseThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.courseCard:hover .courseThumb img {
+  transform: scale(1.05);
+}
+
+/* OVERLAY (like play button feel) */
+.courseOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+  color: #00ffa3;
+  font-weight: 700;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.courseCard:hover .courseOverlay {
+  opacity: 1;
+}
+
+.courseBadge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: #000;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  border-radius: 4px;
 }

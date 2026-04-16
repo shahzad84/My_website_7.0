@@ -10,7 +10,7 @@
 }
 
 /* GRID BACKGROUND */
-.hero-grid {
+.heroGrid {
   position: absolute;
   inset: 0;
   background-image:
@@ -23,7 +23,7 @@
 }
 
 /* GLOW EFFECTS */
-.hero-glow {
+.heroGlow {
   position: absolute;
   width: 700px;
   height: 700px;
@@ -35,7 +35,7 @@
   animation: glowPulse 8s ease-in-out infinite;
 }
 
-.hero-glow2 {
+.heroGlow2 {
   position: absolute;
   width: 500px;
   height: 500px;
@@ -53,14 +53,14 @@
 }
 
 /* CONTENT */
-.hero-content {
+.heroContent {
   position: relative;
   z-index: 2;
   max-width: 800px;
 }
 
 /* BADGE */
-.hero-badge {
+.heroBadge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -76,7 +76,7 @@
   animation: slideInDown 0.6s ease-out 0s both;
 }
 
-.hero-badge::before {
+.heroBadge::before {
   content: '';
   width: 8px;
   height: 8px;
@@ -137,7 +137,7 @@
 }
 
 /* SUBTEXT */
-.hero-sub {
+.heroSub {
   font-size: 1.05rem;
   color: #8b8b9c;
   max-width: 480px;
@@ -148,7 +148,7 @@
 }
 
 /* BUTTONS */
-.hero-btns {
+.heroBtns {
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
@@ -156,7 +156,7 @@
   animation: slideInDown 0.6s ease-out 0.3s both;
 }
 
-.btn-primary {
+.btnPrimary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -176,12 +176,12 @@
   letter-spacing: 0.5px;
 }
 
-.btn-primary:hover {
+.btnPrimary:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(0, 255, 163, 0.4);
 }
 
-.btn-outline {
+.btnOutline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -201,7 +201,7 @@
   backdrop-filter: blur(5px);
 }
 
-.btn-outline:hover {
+.btnOutline:hover {
   border-color: #00ffa3;
   background: rgba(0, 255, 163, 0.15);
   box-shadow: 0 0 20px rgba(0, 255, 163, 0.3);
@@ -209,7 +209,7 @@
 }
 
 /* STATS */
-.hero-stats {
+.heroStats {
   display: flex;
   gap: 3rem;
   margin-top: 4rem;
@@ -217,7 +217,7 @@
   animation: slideInDown 0.6s ease-out 0.4s both;
 }
 
-.stat-item {
+.statItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -226,11 +226,11 @@
   transition: all 0.3s ease;
 }
 
-.stat-item:hover {
+.statItem:hover {
   transform: translateY(-3px);
 }
 
-.stat-num {
+.statNum {
   font-family: 'Syne', sans-serif;
   font-size: 2.2rem;
   font-weight: 800;
@@ -241,12 +241,12 @@
   background-clip: text;
 }
 
-.stat-num span {
+.statNum span {
   color: #00ffa3;
   font-size: 0.9em;
 }
 
-.stat-label {
+.statLabel {
   font-size: 0.78rem;
   color: #8b8b9c;
   font-family: 'Space Mono', monospace;
@@ -270,23 +270,23 @@
     font-size: clamp(2rem, 6vw, 3.5rem);
   }
 
-  .hero-sub {
+  .heroSub {
     font-size: 0.9rem;
   }
 
-  .hero-stats {
+  .heroStats {
     gap: 1.5rem;
   }
 
-  .stat-item {
+  .statItem {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .hero-glow,
-  .hero-glow2 {
+  .heroGlow,
+  .heroGlow2 {
     display: none;
   }
 }
@@ -305,24 +305,24 @@
     line-height: 1.2;
   }
 
-  .hero-sub {
+  .heroSub {
     font-size: 0.85rem;
     max-width: 100%;
   }
 
-  .hero-btns {
+  .heroBtns {
     gap: 0.6rem;
     margin-top: 1.2rem;
   }
 
-  .btn-primary,
-  .btn-outline {
+  .btnPrimary,
+  .btnOutline {
     padding: 0.8rem 1.5rem;
     font-size: 0.78rem;
     border-radius: 6px;
   }
 
-  .hero-stats {
+  .heroStats {
     gap: 1.2rem;
     margin-top: 1.8rem;
     display: grid;
@@ -335,7 +335,7 @@
     margin-right: auto;
   }
 
-  .stat-item {
+  .statItem {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -343,17 +343,17 @@
     padding: 0.8rem;
   }
 
-  .stat-num {
+  .statNum {
     font-size: 1.4rem;
     font-weight: 800;
     line-height: 1;
   }
 
-  .stat-num span {
+  .statNum span {
     font-size: 0.85em;
   }
 
-  .stat-label {
+  .statLabel {
     font-size: 0.68rem;
     color: #7b7b8c;
     margin-top: 0.3rem;
@@ -375,31 +375,31 @@
     line-height: 1.1;
   }
 
-  .hero-sub {
+  .heroSub {
     font-size: 0.8rem;
     margin: 0.8rem 0 1rem;
   }
 
-  .hero-badge {
+  .heroBadge {
     font-size: 0.6rem;
     margin-bottom: 0.8rem;
   }
 
-  .hero-btns {
+  .heroBtns {
     flex-direction: column;
     gap: 0.6rem;
     margin-top: 1rem;
   }
 
-  .btn-primary,
-  .btn-outline {
+  .btnPrimary,
+  .btnOutline {
     width: 100%;
     padding: 0.75rem 1rem;
     font-size: 0.72rem;
     border-radius: 6px;
   }
 
-  .hero-stats {
+  .heroStats {
     gap: 1rem;
     margin-top: 1.3rem;
     display: grid;
@@ -412,7 +412,7 @@
     margin-right: auto;
   }
 
-  .stat-item {
+  .statItem {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -420,17 +420,17 @@
     padding: 0.6rem;
   }
 
-  .stat-num {
+  .statNum {
     font-size: 1.2rem;
     font-weight: 800;
     line-height: 1;
   }
 
-  .stat-num span {
+  .statNum span {
     font-size: 0.8em;
   }
 
-  .stat-label {
+  .statLabel {
     font-size: 0.62rem;
     color: #7b7b8c;
     margin-top: 0.25rem;
@@ -438,13 +438,13 @@
     letter-spacing: 0.3px;
   }
 
-  .hero-stats {
+  .heroStats {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
-  .stat-num {
+  .statNum {
     font-size: 1.2rem;
   }
 }

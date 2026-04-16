@@ -1,67 +1,66 @@
-import React from "react";
-import "./Hero.css";
+import styles from "./Hero.module.css";
 import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const navigate = useNavigate();
   return (
-    <section id="home" className="hero">
+    <section id="home" className={styles.hero}>
       {/* Background effects */}
-      <div className="hero-grid"></div>
-      <div className="hero-glow"></div>
-      <div className="hero-glow2"></div>
+      <div className={styles.heroGrid}></div>
+      <div className={styles.heroGlow}></div>
+      <div className={styles.heroGlow2}></div>
 
-      <div className="hero-content">
-        <div className="hero-badge">
+      <div className={styles.heroContent}>
+        <div className={styles.heroBadge}>
           ● LIVE — New Course Dropped
         </div>
 
         <h1>
           Code.<br />
-          <span className="line2">Build.</span><br />
-          <span className="line3">Sell.</span>
+          <span className={styles.line2}>Build.</span><br />
+          <span className={styles.line3}>Sell.</span>
         </h1>
 
-        <p className="hero-sub">
+        <p className={styles.heroSub}>
           Premium coding courses, developer tools, and digital products —
           everything you need to go from idea to income.
         </p>
 
-        <div className="hero-btns">
-          <button className="btn-primary" onClick={() => navigate("/courses")}>
+        <div className={styles.heroBtns}>
+          <button className={styles.btnPrimary} onClick={() => navigate("/courses")}>
             Browse Courses →
           </button>
-          <button className="btn-outline" onClick={() => navigate("/products")}>
+          <button className={styles.btnOutline} onClick={() => navigate("/products")}>
             ⚡ Shop Products
           </button>
         </div>
 
-        <div className="hero-stats">
-          <div className="stat-item">
-            <div className="stat-num">
+        <div className={styles.heroStats}>
+          <div className={styles.statItem}>
+            <div className={styles.statNum}>
               12<span>k+</span>
             </div>
-            <div className="stat-label">Students</div>
+            <div className={styles.statLabel}>Students</div>
           </div>
 
-          <div className="stat-item">
-            <div className="stat-num">
+          <div className={styles.statItem}>
+            <div className={styles.statNum}>
               48<span>+</span>
             </div>
-            <div className="stat-label">Courses</div>
+            <div className={styles.statLabel}>Courses</div>
           </div>
 
-          <div className="stat-item">
-            <div className="stat-num">
+          <div className={styles.statItem}>
+            <div className={styles.statNum}>
               4.9<span>★</span>
             </div>
-            <div className="stat-label">Avg Rating</div>
+            <div className={styles.statLabel}>Avg Rating</div>
           </div>
 
-          <div className="stat-item">
-            <div className="stat-num">
+          <div className={styles.statItem}>
+            <div className={styles.statNum}>
               500<span>+</span>
             </div>
-            <div className="stat-label">Products Sold</div>
+            <div className={styles.statLabel}>Products Sold</div>
           </div>
         </div>
       </div>

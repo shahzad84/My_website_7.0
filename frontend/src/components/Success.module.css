@@ -1,0 +1,129 @@
+.success {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successCard {
+  text-align: center;
+  position: relative;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow:
+    0 0 30px rgba(0, 255, 163, 0.05),
+    inset 0 1px 0 rgba(0, 255, 163, 0.1);
+
+  background: linear-gradient(135deg, rgba(123, 92, 255, 0.05), rgba(0, 255, 163, 0.03));
+  border: 1.5px solid rgba(0, 255, 163, 0.2);
+
+  animation: popIn 0.5s ease-out both;
+}
+.successCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 163, 0.3), transparent);
+}
+
+
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.successIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.success h1 {
+  margin-bottom: 1rem;
+}
+
+.success p {
+  color: #8b8b9c;
+  margin-bottom: 2rem;
+}
+
+.successActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.successActions button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  border: 1.5px solid #00ffa3;
+  background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), transparent);
+  color: #00ffa3;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  font-family: 'Space Mono', monospace;
+}
+
+.successActions button:hover {
+  background: #00ffa3;
+  color: #0a0a0f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 255, 163, 0.3);
+}
+
+.successActions .outline {
+  background: transparent;
+  border: 1px solid #00ffa3;
+  color: #00ffa3;
+}
+
+@media (max-width: 768px) {
+
+  .success {
+    padding: 1.2rem;
+    align-items: center; /* keep centered */
+  }
+
+  .successCard {
+    width: 100%;
+    max-width: 100%;     /* full width but controlled */
+    padding: 2rem 1.4rem;
+
+    border-radius: 10px; /* keep card feel */
+  }
+
+  .success h1 {
+    font-size: 1.5rem;
+  }
+
+  .success p {
+    font-size: 0.9rem;
+  }
+
+  .successActions {
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .successActions button {
+    width: 100%;
+  }
+}

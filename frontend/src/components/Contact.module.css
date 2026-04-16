@@ -6,14 +6,14 @@
 }
 
 /* layout */
-.contact-inner {
+.contactInner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
 }
 
 /* LABEL + TITLE (same system) */
-.section-label {
+.sectionLabel {
   font-size: 0.72rem;
   color: #00ffa3;
   letter-spacing: 0.2em;
@@ -22,7 +22,8 @@
   font-family: 'Space Mono', monospace;
 }
 
-.section-title {
+.sectionTitle {
+  font-family: 'Syne', sans-serif; 
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
   margin-top: 1rem;
@@ -31,21 +32,21 @@
   -webkit-text-fill-color: transparent;
 }
 
-.section-desc {
+.sectionDesc {
   color: #8b8b9c;
   margin-top: 0.8rem;
   line-height: 1.6;
 }
 
 /* CONTACT LINKS */
-.contact-links {
+.contactLinks {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.contact-link {
+.contactLink {
   display: flex;
   gap: 1rem;
   padding: 1rem;
@@ -57,18 +58,41 @@
   transition: 0.3s;
 }
 
-.contact-link:hover {
+.contactLink:hover {
   transform: translateY(-3px);
   border-color: rgba(0, 255, 163, 0.4);
   box-shadow: 0 0 20px rgba(0, 255, 163, 0.1);
 }
 
-.contact-icon {
+.contactIcon {
   font-size: 1.4rem;
 }
 
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+/* label inside links */
+.lbl {
+  font-size: 0.8rem;
+  color: #8b8b9c;
+}
+
+/* value inside links */
+.val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e8e8f0;
+}
+
+/* error border (used in input) */
+.errorBorder {
+  border-color: #ff4d4d !important;
+}
+
 /* FORM */
-.contact-form {
+.contactForm {
   padding: 2rem;
   border-radius: 12px;
   border: 1.5px solid rgba(0, 255, 163, 0.2);
@@ -76,23 +100,23 @@
   backdrop-filter: blur(10px);
 }
 
-.form-title {
+.formTitle {
   font-size: 1.4rem;
   font-weight: 700;
   color: #e8e8f0;
   margin-bottom: 0.5rem;
 }
 
-.form-sub {
+.formSub {
   font-size: 0.9rem;
   color: #8b8b9c;
   margin-bottom: 1.5rem;
 }
 
 /* INPUTS */
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
+.contactForm input,
+.contactForm select,
+.contactForm textarea {
   width: 100%;
   padding: 0.8rem;
   margin-bottom: 1rem;
@@ -105,13 +129,13 @@
   outline: none;
 }
 
-.contact-form textarea {
+.contactForm textarea {
   min-height: 120px;
   resize: none;
 }
 
 /* BUTTON */
-.form-submit {
+.formSubmit {
   width: 100%;
   padding: 0.8rem;
 
@@ -125,14 +149,14 @@
   transition: 0.3s;
 }
 
-.form-submit:hover {
+.formSubmit:hover {
   background: #00ffa3;
   color: #0a0a0f;
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .contact-inner {
+  .contactInner {
     grid-template-columns: 1fr;
   }
 }
@@ -150,42 +174,37 @@
 }
 
 /* Status message (success / error) */
-.form-status {
+.formStatus {
   margin-top: 12px;
   font-size: 14px;
   font-weight: 500;
 }
 
 /* Disabled button */
-.form-submit:disabled {
+.formSubmit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 /* Input focus (soft glow — does NOT change layout) */
-.contact-form input:focus,
-.contact-form textarea:focus {
+.contactForm input:focus,
+.contactForm textarea:focus {
   border-color: #00ffa3;
   box-shadow: 0 0 6px rgba(0, 255, 163, 0.25);
 }
 
 /* Optional: subtle invalid state (only when error exists) */
-input.error-border,
-textarea.error-border {
+.contactForm input.errorBorder,
+.contactForm textarea.errorBorder {
   border-color: #ff4d4d !important;
 }
+/* 🌍 PHONE INPUT DARK THEME (GLOBAL FIX) */
 
-/* ========================= */
-/* 🌍 PHONE INPUT DARK THEME */
-/* ========================= */
-
-/* Main container */
-.react-tel-input {
+:global(.react-tel-input) {
   width: 100%;
 }
 
-/* Input field */
-.react-tel-input .form-control {
+:global(.react-tel-input .form-control) {
   width: 100% !important;
   background: rgba(20, 20, 30, 0.6) !important;
   border: 1px solid rgba(0, 255, 163, 0.2) !important;
@@ -195,36 +214,32 @@ textarea.error-border {
   height: 42px;
 }
 
-/* Focus state */
-.react-tel-input .form-control:focus {
+:global(.react-tel-input .form-control:focus) {
   border-color: #00ffa3 !important;
   box-shadow: 0 0 8px rgba(0, 255, 163, 0.3) !important;
 }
 
-/* Country dropdown button */
-.react-tel-input .flag-dropdown {
+:global(.react-tel-input .flag-dropdown) {
   background: rgba(20, 20, 30, 0.6) !important;
   border: 1px solid rgba(0, 255, 163, 0.2) !important;
   border-radius: 8px 0 0 8px !important;
 }
 
-/* Dropdown list */
-.react-tel-input .country-list {
+:global(.react-tel-input .country-list) {
   background: #0a0a0f !important;
   color: #e8e8f0 !important;
   border: 1px solid rgba(0, 255, 163, 0.2) !important;
 }
 
-/* Hover country item */
-.react-tel-input .country-list .country:hover {
+:global(.react-tel-input .country-list .country:hover) {
   background: rgba(0, 255, 163, 0.1) !important;
 }
 
-/* Selected country */
-.react-tel-input .country-list .country.highlight {
+:global(.react-tel-input .country-list .country.highlight) {
   background: rgba(0, 255, 163, 0.15) !important;
 }
-.react-tel-input .selected-flag {
+
+:global(.react-tel-input .selected-flag) {
   background: transparent !important;
   border-radius: 8px 0 0 8px !important;
 }

@@ -1,0 +1,330 @@
+
+/* Product.css (products BASED RESPONSIVE FIX) */
+
+.products {
+  padding: 1.5rem 3rem 5rem;
+  max-width: 1400px;
+  margin: auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.products::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 255, 163, 0.05), transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.products .sectionLabel {
+  font-size: 0.72rem;
+  color: #00ffa3;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  animation: slideInDown 0.6s ease-out 0s both;
+}
+
+.products .sectionTitle {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #e8e8f0 0%, #00ffa3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  animation: slideInDown 0.6s ease-out 0.1s both;
+}
+
+.products .sectionDesc {
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.7;
+  margin-top: 0.6rem;
+
+  background: linear-gradient(135deg, #8b8b9c, #e8e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+/* SAME AS products GRID (FIX MOBILE ISSUE) */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  margin-top: 1.5rem;
+}
+
+.productsCard {
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(123, 92, 255, 0.05), rgba(0, 255, 163, 0.03));
+  border: 1.5px solid rgba(0, 255, 163, 0.2);
+  padding: 2.5rem;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  display: flex;
+  flex-direction: column;
+  animation: slideInUp 0.6s ease-out both;
+}
+
+
+.productsCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 163, 0.4);
+}
+.productsCard:hover .productsOverlay {
+  opacity: 1;
+}
+
+.productsCard:hover .productsImage img {
+  transform: scale(1.05);
+}
+
+.productsCard:nth-child(1) { animation-delay: 0.1s; }
+.productsCard:nth-child(2) { animation-delay: 0.2s; }
+.productsCard:nth-child(3) { animation-delay: 0.3s; }
+.productsCard:nth-child(4) { animation-delay: 0.4s; }
+.productsCard:nth-child(5) { animation-delay: 0.5s; }
+.productsCard:nth-child(6) { animation-delay: 0.6s; }
+.productsTag {
+  font-size: 0.7rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 0.6rem;
+  transition: all 0.3s ease; 
+}
+.productsCard:hover .productsTag {
+  transform: translateY(-2px) scale(1.02); /* 🔥 SAME as courses */
+}
+
+.tagAccessories {
+  background: rgba(0, 255, 163, 0.15);
+  color: #00ffa3;
+  border: 1px solid rgba(0, 255, 163, 0.3);
+}
+
+.tagAudio {
+  background: rgba(123, 92, 255, 0.15);
+  color: #7b5cff;
+  border: 1px solid rgba(123, 92, 255, 0.3);
+}
+
+.tagTech {
+  background: rgba(255, 167, 38, 0.15);
+  color: #ffa726;
+  border: 1px solid rgba(255, 167, 38, 0.3);
+}
+
+.tagWearables {
+  background: rgba(255, 79, 106, 0.15);
+  color: #ff4f6a;
+  border: 1px solid rgba(255, 79, 106, 0.3);
+}
+
+.productsIcon {
+  font-size: 2.2rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.iconAccessories { background: rgba(0,255,163,0.1); color:#00ffa3; }
+.iconAudio { background: rgba(123,92,255,0.1); color:#7b5cff; }
+.iconTech { background: rgba(255,167,38,0.1); color:#ffa726; }
+.iconWearables { background: rgba(255,79,106,0.1); color:#ff4f6a; }
+
+.productsTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #e8e8f0;
+}
+
+.productsDesc {
+  color: #8b8b9c;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.productsMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,255,163,0.1);
+  padding-top: 1rem;
+}
+
+.productsPrice {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #00ffa3;
+}
+
+.productsPrice .old {
+  font-size: 0.85rem;
+  text-decoration: line-through;
+  color: #6b6b80;
+  margin-left: 0.5rem;
+}
+
+.buyBtn {
+  border: 1.5px solid #00ffa3;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 163, 0.15) 0%,
+    transparent 100%
+  );
+
+  color: #00ffa3;
+  padding: 0.7rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.buyBtn:hover {
+  background: #00ffa3;
+  color: #0a0a0f;
+  box-shadow: 0 4px 20px rgba(0, 255, 163, 0.3);
+  transform: translateY(-2px);
+}
+
+.productsImage {
+  width: 100%;
+  aspect-ratio: 16 / 9;       /* ✅ SAME SIZE for all cards */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a0a0f;
+  position: relative;         /* needed for overlay */
+  margin-bottom: 1.2rem;
+}
+
+.productsImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* ✅ clean fill */
+  object-position: center;    /* keeps focus */
+  transition: transform 0.3s ease;
+}
+
+.productsOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+  color: #00ffa3;
+  font-weight: 700;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.productsCard:hover .productsOverlay {
+  opacity: 1;
+}
+.productsCard:hover .productsImage img {
+  transform: scale(1.05);
+}
+
+
+.productsHeader {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;   /* 🔥 IMPORTANT */
+  align-items: flex-start;  /* better alignment */
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+
+.loadingText,
+.emptyText {
+  color: #8b8b9c;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.fallbackWarning {
+  color: #ffcc00;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+
+/* products RESPONSIVE STYLE (FIX MOBILE LOOK) */
+@media (max-width: 900px) {
+  .products {
+    padding: 6rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .products {
+    padding: 4rem 1rem;
+  }
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .products {
+    padding: 3rem 0.75rem;
+  }
+}
+
+
+.productsCard {
+  box-shadow: 0 0 20px rgba(0,255,163,0.05);
+}
+
+.productsCard:hover {
+  box-shadow: 0 0 40px rgba(0,255,163,0.15);
+}
+
+.productsCard {
+  animation: slideInUp 0.6s ease-out both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

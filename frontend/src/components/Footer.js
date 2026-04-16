@@ -1,21 +1,20 @@
-import React from "react";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
-  const navClass = ({ isActive }) => (isActive ? "active" : "");
+  const navClass = ({ isActive }) => (isActive ? styles.active : "");
 
   return (
-    <footer className="footer">
-      <div className="footer-inner">
+    <footer className={styles.footer}>
+      <div className={styles.footerInner}>
 
         {/* LOGO */}
-        <NavLink to="/" className="footer-logo">
+        <NavLink to="/" className={styles.footerLogo}>
           Dev<span>Store</span>
         </NavLink>
 
         {/* LINKS */}
-        <div className="footer-links">
+        <div className={styles.footerLinks}>
           <NavLink to="/" className={navClass}>Home</NavLink>
           <NavLink to="/courses" className={navClass}>Courses</NavLink>
           <NavLink to="/products" className={navClass}>Products</NavLink>
@@ -23,18 +22,18 @@ const Footer = () => {
         </div>
 
         {/* CTA BUTTONS (NEW 🔥) */}
-        <div className="footer-cta">
-          <NavLink to="/courses" className="footer-btn primary">
+        <div className={styles.footerCta}>
+          <NavLink to="/courses" className={`${styles.footerBtn} ${styles.primary}`}>
             Browse Courses
           </NavLink>
 
-          <NavLink to="/cart" className="footer-btn outline">
+          <NavLink to="/cart" className={`${styles.footerBtn} ${styles.outline}`}>
             Go to Cart 🛒
           </NavLink>
         </div>
 
         {/* COPY */}
-        <div className="footer-copy">
+        <div className={styles.footerCopy}>
           © 2026 DevStore. Built for developers.
         </div>
 

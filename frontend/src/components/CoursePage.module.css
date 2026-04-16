@@ -1,0 +1,255 @@
+.coursePage {
+  min-height: 100vh;
+  padding: 3rem;
+  background: var(--bg2);
+}
+
+/* CONTAINER */
+.courseContainer {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* BACK BUTTON */
+.backBtn {
+  border: 1.5px solid rgba(0, 255, 163, 0.3);
+  background: rgba(0, 255, 163, 0.02);
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  color: #00ffa3;
+  border-radius: 8px;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+}
+
+.backBtn:hover {
+  background: rgba(0, 255, 163, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 163, 0.2);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   HERO (EXACT PRODUCT STYLE)
+========================= */
+.courseHero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+
+  min-height: 420px;
+  padding: 2.8rem 2.2rem;
+
+  background: linear-gradient(
+    135deg,
+    rgba(123, 92, 255, 0.05) 0%,
+    rgba(0, 255, 163, 0.03) 100%
+  );
+
+  border: 1.5px solid rgba(0, 255, 163, 0.2);
+  border-radius: 14px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 30px rgba(0, 255, 163, 0.05),
+    inset 0 1px 0 rgba(0, 255, 163, 0.1);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow line */
+.courseHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 163, 0.3),
+    transparent
+  );
+}
+
+/* =========================
+   IMAGE (LEFT)
+========================= */
+.courseImage img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* =========================
+   INFO (RIGHT)
+========================= */
+.courseInfo h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 1rem 0;
+  color: #e8e8f0;
+}
+
+.courseInfo p {
+  color: #8b8b9c;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* TAG */
+.courseTag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: 'Space Mono', monospace;
+}
+
+/* LEVEL COLORS */
+.tagBeginner {
+  background: rgba(0, 255, 163, 0.15);
+  color: #00ffa3;
+  border: 1px solid rgba(0, 255, 163, 0.3);
+}
+
+.tagInter {
+  background: rgba(123, 92, 255, 0.15);
+  color: #7b5cff;
+  border: 1px solid rgba(123, 92, 255, 0.3);
+}
+
+.tagAdv {
+  background: rgba(255, 79, 106, 0.15);
+  color: #ff6b85;
+  border: 1px solid rgba(255, 79, 106, 0.3);
+}
+
+/* META */
+.courseMeta {
+  display: flex;
+  gap: 1.2rem;
+  color: #8b8b9c;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ACTIONS */
+.courseActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* PRICE */
+.coursePrice {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #00ffa3;
+}
+
+.coursePrice .old {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  text-decoration: line-through;
+  color: #6b6b80;
+}
+
+/* BUTTON */
+.courseBtn {
+  border: 1.5px solid #00ffa3;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 163, 0.15) 0%,
+    transparent 100%
+  );
+  color: #00ffa3;
+  padding: 0.7rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.courseBtn:hover {
+  background: #00ffa3;
+  color: #0a0a0f;
+  box-shadow: 0 4px 20px rgba(0, 255, 163, 0.3);
+  transform: translateY(-2px);
+}
+
+
+
+/* DETAILS SECTION */
+.courseDetails {
+  margin-top: 2.5rem;
+  background: rgba(20, 20, 30, 0.6);
+  border: 1px solid rgba(0, 255, 163, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.courseDetails h2 {
+  color: #e8e8f0;
+  margin-bottom: 1rem;
+}
+
+.courseDetails ul {
+  list-style: none;
+  padding: 0;
+}
+
+.courseDetails li {
+  color: #8b8b9c;
+  margin-bottom: 0.8rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .coursePage {
+    padding: 2rem 1rem;
+  }
+
+  .courseHero {
+    grid-template-columns: 1fr;
+    padding: 1.8rem;
+  }
+
+  .courseInfo h1 {
+    font-size: 1.6rem;
+  }
+
+  .courseMeta {
+    flex-wrap: wrap;
+  }
+
+  /* 🔥 KEEP COLUMN FOR TEXT ABOVE */
+  .courseActions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  /* 🔥 PRICE + BUTTON SAME ROW */
+  .coursePrice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* wrapper row fix (important) */
+  .courseActions {
+    position: relative;
+  }
+
+  .courseBtn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}

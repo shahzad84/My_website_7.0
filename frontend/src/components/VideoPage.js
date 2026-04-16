@@ -1,49 +1,81 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./VideoPage.css";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useSiteContent } from "../context/SiteContentContext";
+import styles from "./VideoPage.module.css";
 
 const VideoPage = () => {
-  const { state: video } = useLocation();
+  const { id } = useParams();
+  const { videos } = useSiteContent();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  // ✅ state first
+  let video = location.state;
+
+  // ✅ fallback
+  if (!video) {
+    video = videos.find((v) => String(v.id) === String(id));
+  }
 
   if (!video) {
     return <p>No video found</p>;
   }
 
   return (
-    <section className="video-page">
-      <div className="video-container">
+    <section className={styles.videoPage}>
+      <div className={styles.videoPageContainer}>
 
-        {/* BACK BUTTON */}
-        <button className="back-btn" onClick={() => navigate(-1)}>
+        {/* BACK */}
+        <button className={styles.videoPageBackBtn} onClick={() => navigate(-1)}>
           ← Back
         </button>
 
-        {/* VIDEO PLAYER */}
-        <div className="video-player">
+        {/* HERO */}
+        <div className={styles.videoPagePlayer}>
+
+          {/* LEFT → VIDEO */}
+          <div className={styles.videoPageImage}>
             <iframe
-                width="100%"
-                height="500"
-                src={`https://www.youtube.com/embed/${video.videoId}`}
-                title={video.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${video.videoId}`}
+              title={video.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
             ></iframe>
+          </div>
+
+          {/* RIGHT → INFO */}
+          <div className={styles.videoPageInfo}>
+
+            {/* TAG */}
+            <span className={styles.videoPageCategoryTag}>
+              {video.category}
+            </span>
+
+            <h1>{video.title}</h1>
+            <p>{video.desc}</p>
+
+            {/* META */}
+            <div className={styles.videoPageMeta}>
+              {video.level && <span className={styles.videoPageLevelTag}>📊 {video.level}</span>}
+              {video.duration && <span className={styles.videoPageDuration}>⏱ {video.duration}</span>}
             </div>
 
-        {/* META */}
-        <div className="video-meta">
-          <span className="category-tag">{video.category}</span>
-          <span className={`level-tag level-${video.level.toLowerCase()}`}>
-            {video.level}
-          </span>
-          <span className="duration">{video.duration}</span>
+          </div>
         </div>
 
-        {/* CONTENT */}
-        <h1>{video.title}</h1>
-        <p>{video.desc}</p>
+        {/* DETAILS SECTION */}
+        <div className={styles.videoPageDetails}>
+          <h2>About this video</h2>
+
+          <ul>
+            {(video.details || []).map((item, i) => (
+              <li key={i}>✔ {item}</li>
+            ))}
+          </ul>
+        </div>
 
       </div>
     </section>

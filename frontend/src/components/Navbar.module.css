@@ -37,7 +37,7 @@
 }
 
 /* ================= LOGO ================= */
-.nav-logo {
+.navLogo {
   font-family: 'Syne', sans-serif;
   font-size: 1.4rem;
   font-weight: 800;
@@ -45,18 +45,18 @@
   text-decoration: none;
 }
 
-.nav-logo span {
+.navLogo span {
   color: #00ffa3;
 }
 
 /* ================= LINKS ================= */
-.nav-links {
+.navLinks {
   display: flex;
   gap: 2.2rem;
   list-style: none;
 }
 
-.nav-links a {
+.navLinks a {
   font-family: 'Space Mono', monospace;
   font-size: 0.75rem;
   color: #8b8b9c;
@@ -67,12 +67,12 @@
   transition: 0.3s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.navLinks a:hover,
+.navLinks a.active {
   color: #00ffa3;
 }
 
-.nav-links a::after {
+.navLinks a::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -83,13 +83,13 @@
   transition: 0.3s;
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
+.navLinks a:hover::after,
+.navLinks a.active::after {
   width: 100%;
 }
 
 /* ================= CART BUTTON ================= */
-.cart-btn {
+.cartBtn {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -108,16 +108,16 @@
   transition: 0.3s;
 }
 
-.cart-btn:hover {
+.cartBtn:hover {
   transform: translateY(-2px);
 }
 
-.cart-btn svg {
+.cartBtn svg {
   font-size: 0.9rem;
 }
 
 /* badge */
-.cart-badge {
+.cartBadge {
   position: absolute;
   top: -6px;
   right: -8px;
@@ -174,7 +174,7 @@
 }
 
 /* ================= MOBILE MENU ================= */
-.mobile-nav {
+.mobileNav {
   position: fixed;
   top: 0;
   left: 0;
@@ -199,14 +199,14 @@
 }
 
 /* OPEN STATE */
-.mobile-nav.open {
+.mobileNav.open {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
 
 /* MOBILE LINKS */
-.mobile-nav a {
+.mobileNav a {
   font-family: 'Space Mono', monospace;
   font-size: 1rem;
 
@@ -217,7 +217,7 @@
   transition: 0.3s;
 }
 
-.mobile-nav a:hover {
+.mobileNav a:hover {
   color: #00ffa3;
 }
 
@@ -227,8 +227,8 @@
     padding: 0.8rem 1rem;
   }
 
-  .nav-links,
-  .cart-btn {
+  .navLinks,
+  .cartBtn {
     display: none;
   }
 
@@ -239,7 +239,7 @@
 
 /* SMALL DEVICES */
 @media (max-width: 480px) {
-  .nav-logo {
+  .navLogo {
     font-size: 1.2rem;
   }
 }
@@ -254,4 +254,16 @@ button,
 a {
   outline: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.navOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 998;
+}
+
+/* optional: active class for hamburger */
+.active {
+  color: #00ffa3;
 }

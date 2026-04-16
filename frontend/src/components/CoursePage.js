@@ -1,42 +1,62 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./CoursePage.css";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import styles from "./CoursePage.module.css";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
+import { useSiteContent } from "../context/SiteContentContext";
+
 const CoursePage = () => {
-  const { state: course } = useLocation();
+  const { id } = useParams();
+  const { courses } = useSiteContent();
+  const location = useLocation();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+
+  // ✅ state first
+  let course = location.state;
+
+  // ✅ fallback
+  if (!course) {
+    course = courses.find((c) => String(c.id) === String(id));
+  }
 
   if (!course) {
     return <p>No course found</p>;
   }
 
   return (
-    <section className="course-page">
-      <div className="course-container">
+    <section className={styles.coursePage}> {/* 🔥 SAME AS course */}
+      <div className={styles.courseContainer}>
 
-        {/* BACK BUTTON */}
-        <button className="back-btn" onClick={() => navigate(-1)}>
+        {/* BACK */}
+        <button className={styles.backBtn} onClick={() => navigate(-1)}>
           ← Back
         </button>
 
-        {/* HERO CARD */}
-        {/* HERO CARD */}
-        <div className="course-hero">
+        {/* HERO */}
+        <div className={styles.courseHero}>
 
-          {/* LEFT SIDE (IMAGE) */}
-          <div className="course-image">
+          {/* IMAGE */}
+          <div className={styles.courseImage}>
             <img
               src={course.image || images.phone}
               alt={course.title}
             />
           </div>
 
-          {/* RIGHT SIDE (INFO) */}
-          <div className="course-info">
+          {/* CONTENT */}
+          <div className={styles.courseInfo}>
 
-            <span className={`course-tag ${course.tagClass}`}>
+            {/* TAG */}
+            <span
+                className={`${styles.courseTag} ${
+                  course.level === "Beginner"
+                    ? styles.tagBeginner
+                    : course.level === "Intermediate"
+                    ? styles.tagInter
+                    : styles.tagAdv
+                }`}
+              >
               {course.level}
             </span>
 
@@ -44,21 +64,23 @@ const CoursePage = () => {
             <p>{course.desc}</p>
 
             {/* META */}
-            <div className="course-meta">
+            <div className={styles.courseMeta}>
               {course.duration && <span>⏱ {course.duration}</span>}
               {course.lessons && <span>📚 {course.lessons} lessons</span>}
               {course.category && <span>👨‍💻 {course.category}</span>}
             </div>
 
             {/* ACTIONS */}
-            <div className="course-actions">
-              <div className="course-price">
+            <div className={styles.courseActions}>
+              <div className={styles.coursePrice}>
                 {course.price}
-                <span className="old">{course.oldPrice}</span>
+                {course.oldPrice && (
+                  <span className={styles.old}>{course.oldPrice}</span>
+                )}
               </div>
 
               <button
-                className="course-btn"
+                className={styles.courseBtn}
                 onClick={(e) => {
                   e.stopPropagation();
 
@@ -81,15 +103,14 @@ const CoursePage = () => {
           </div>
         </div>
 
-        {/* COURSE CONTENT */}
-        <div className="course-content">
+        {/* DETAILS (like course page 🔥) */}
+        <div className={styles.courseDetails}>
           <h2>What you'll learn</h2>
 
           <ul>
-            <li>✔ Build real-world projects</li>
-            <li>✔ Master modern tools & workflows</li>
-            <li>✔ Write clean & scalable code</li>
-            <li>✔ Improve UI/UX skills</li>
+            {(course.learnings || []).map((item, i) => (
+              <li key={i}>✔ {item}</li>
+            ))}
           </ul>
         </div>
 

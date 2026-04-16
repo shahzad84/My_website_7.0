@@ -1,17 +1,18 @@
-.course-page {
+.videoPage {
   min-height: 100vh;
   padding: 3rem;
   background: var(--bg2);
+  position: relative;
 }
 
 /* CONTAINER */
-.course-container {
+.videoPageContainer {
   max-width: 1100px;
   margin: auto;
 }
 
 /* BACK BUTTON */
-.back-btn {
+.videoPageBackBtn {
   border: 1.5px solid rgba(0, 255, 163, 0.3);
   background: rgba(0, 255, 163, 0.02);
   padding: 0.6rem 1.5rem;
@@ -23,16 +24,14 @@
   transition: 0.3s;
 }
 
-.back-btn:hover {
+.videoPageBackBtn:hover {
   background: rgba(0, 255, 163, 0.1);
   box-shadow: 0 0 15px rgba(0, 255, 163, 0.2);
   transform: translateY(-2px);
 }
 
-/* =========================
-   HERO (EXACT PRODUCT STYLE)
-========================= */
-.course-hero {
+/* HERO (MATCH PRODUCT PAGE) */
+.videoPagePlayer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
@@ -51,139 +50,111 @@
 
   backdrop-filter: blur(10px);
 
-  box-shadow:
-    0 0 30px rgba(0, 255, 163, 0.05),
-    inset 0 1px 0 rgba(0, 255, 163, 0.1);
+  box-shadow: 0 0 30px rgba(0, 255, 163, 0.05),
+              inset 0 1px 0 rgba(0, 255, 163, 0.1);
 
   position: relative;
   overflow: hidden;
 }
 
 /* glow line */
-.course-hero::before {
+.videoPagePlayer::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 255, 163, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 163, 0.3), transparent);
 }
 
-/* =========================
-   IMAGE (LEFT)
-========================= */
-.course-image img {
+/* LEFT VIDEO */
+.videoPageImage {
   width: 100%;
   border-radius: 12px;
-  object-fit: cover;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
 }
 
-/* =========================
-   INFO (RIGHT)
-========================= */
-.course-info h1 {
+.videoPageImage iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* RIGHT INFO */
+.videoPageInfo h1 {
   font-size: 2.2rem;
   font-weight: 800;
   margin: 1rem 0;
   color: #e8e8f0;
 }
 
-.course-info p {
+.videoPageInfo p {
   color: #8b8b9c;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
-/* TAG */
-.course-tag {
+/* TAGS */
+.videoPageMeta {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+/* CATEGORY TAG */
+.videoPageCategoryTag {
   display: inline-block;
   padding: 0.5rem 1rem;
   font-size: 0.7rem;
   border-radius: 8px;
   font-weight: 600;
   font-family: 'Space Mono', monospace;
-}
 
-/* LEVEL COLORS */
-.tag-beginner {
   background: rgba(0, 255, 163, 0.15);
   color: #00ffa3;
   border: 1px solid rgba(0, 255, 163, 0.3);
 }
 
-.tag-inter {
+/* LEVEL TAG (FIXED ANIMATION ISSUE ROOT CAUSE) */
+.videoPageLevelTag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: 'Space Mono', monospace;
+  transition: all 0.3s ease;
+}
+
+/* IMPORTANT: hover animation fix */
+.videoPageLevelTag:hover {
+  transform: translateY(-2px);
+}
+
+/* LEVEL COLORS */
+.levelBeginner {
+  background: rgba(0, 255, 163, 0.15);
+  color: #00ffa3;
+  border: 1px solid rgba(0, 255, 163, 0.3);
+}
+
+.levelInter {
   background: rgba(123, 92, 255, 0.15);
   color: #7b5cff;
   border: 1px solid rgba(123, 92, 255, 0.3);
 }
 
-.tag-adv {
+.levelAdv {
   background: rgba(255, 79, 106, 0.15);
   color: #ff6b85;
   border: 1px solid rgba(255, 79, 106, 0.3);
 }
 
-/* META */
-.course-meta {
-  display: flex;
-  gap: 1.2rem;
-  color: #8b8b9c;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-/* ACTIONS */
-.course-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* PRICE */
-.course-price {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #00ffa3;
-}
-
-.course-price .old {
-  font-size: 1rem;
-  margin-left: 0.5rem;
-  text-decoration: line-through;
-  color: #6b6b80;
-}
-
-/* BUTTON */
-.course-btn {
-  border: 1.5px solid #00ffa3;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 255, 163, 0.15) 0%,
-    transparent 100%
-  );
-  color: #00ffa3;
-  padding: 0.7rem 1.6rem;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.course-btn:hover {
-  background: #00ffa3;
-  color: #0a0a0f;
-  box-shadow: 0 4px 20px rgba(0, 255, 163, 0.3);
-  transform: translateY(-2px);
-}
-
-/* CONTENT */
-.course-content {
+/* DETAILS */
+.videoPageDetails {
   margin-top: 2.5rem;
   background: rgba(20, 20, 30, 0.6);
   border: 1px solid rgba(0, 255, 163, 0.15);
@@ -191,63 +162,43 @@
   padding: 2rem;
 }
 
-.course-content h2 {
+.videoPageDetails h2 {
   color: #e8e8f0;
   margin-bottom: 1rem;
 }
 
-.course-content ul {
+.videoPageDetails ul {
   list-style: none;
   padding: 0;
 }
 
-.course-content li {
+.videoPageDetails li {
   color: #8b8b9c;
   margin-bottom: 0.8rem;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE (MATCH PRODUCT PAGE EXACTLY) */
 @media (max-width: 768px) {
-
-  .course-page {
+  .videoPage {
     padding: 2rem 1rem;
   }
 
-  .course-hero {
+  .videoPagePlayer {
     grid-template-columns: 1fr;
     padding: 1.8rem;
   }
 
-  .course-info h1 {
+  .videoPageInfo h1 {
     font-size: 1.6rem;
   }
 
-  .course-meta {
+  .videoPageMeta {
     flex-wrap: wrap;
   }
 
-  /* 🔥 KEEP COLUMN FOR TEXT ABOVE */
-  .course-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  /* 🔥 PRICE + BUTTON SAME ROW */
-  .course-price {
+  .videoPageLevelTag {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-  }
-
-  /* wrapper row fix (important) */
-  .course-actions {
-    position: relative;
-  }
-
-  .course-btn {
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
 }
