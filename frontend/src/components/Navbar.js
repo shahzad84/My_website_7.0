@@ -70,6 +70,9 @@ const Navbar = () => {
         <NavLink to="/youtube" className={navClass} onClick={closeMenu}>YouTube</NavLink>
         <NavLink to="/products" className={navClass} onClick={closeMenu}>Store</NavLink>
         <NavLink to="/contact" className={navClass} onClick={closeMenu}>Contact</NavLink>
+        <NavLink to="/cart" className={styles.mobileCart} onClick={closeMenu}>
+    🛒 Cart {totalItems > 0 && `(${totalItems})`}
+  </NavLink>
       </div>
     </>
   );

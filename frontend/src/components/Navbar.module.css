@@ -232,6 +232,8 @@
     display: none;
   }
 
+  
+
   .hamburger {
     display: flex;
   }
@@ -267,3 +269,4 @@ a {
 .active {
   color: #00ffa3;
 }
+
