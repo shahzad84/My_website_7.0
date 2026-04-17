@@ -20,6 +20,7 @@
   text-transform: uppercase;
   font-weight: 700;
   font-family: 'Space Mono', monospace;
+  animation: slideInDown 0.6s ease-out 0s both;
 }
 
 .sectionTitle {
@@ -27,6 +28,7 @@
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
   margin-top: 1rem;
+  animation: slideInDown 0.6s ease-out 0.1s both;
   background: linear-gradient(135deg, #e8e8f0 0%, #00ffa3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -36,6 +38,29 @@
   color: #8b8b9c;
   margin-top: 0.8rem;
   line-height: 1.6;
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* CONTACT LINKS */
@@ -44,6 +69,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  animation: slideInUp 0.6s ease-out 0.3s both;
 }
 
 .contactLink {
@@ -56,7 +82,12 @@
   color: #e8e8f0;
   background: rgba(20, 20, 30, 0.4);
   transition: 0.3s;
+  animation: slideInUp 0.5s ease both;
 }
+.contactLink:nth-child(1) { animation-delay: 0.3s; }
+.contactLink:nth-child(2) { animation-delay: 0.4s; }
+.contactLink:nth-child(3) { animation-delay: 0.5s; }
+.contactLink:nth-child(4) { animation-delay: 0.6s; }
 
 .contactLink:hover {
   transform: translateY(-3px);
@@ -98,6 +129,7 @@
   border: 1.5px solid rgba(0, 255, 163, 0.2);
   background: linear-gradient(135deg, rgba(123, 92, 255, 0.05), rgba(0, 255, 163, 0.03));
   backdrop-filter: blur(10px);
+  animation: slideInUp 0.6s ease-out 0.4s both;
 }
 
 .formTitle {

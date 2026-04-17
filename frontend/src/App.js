@@ -15,6 +15,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Success from "./components/Success";
+import CheckoutFormCart from "./components/CheckoutFormCart";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/checkout" element={<CheckoutFormCart />} />
         <Route path="/youtube/video/:id" element={<VideoPage />} />
         <Route path="/courses/course/:id" element={<CoursePage />} />
         <Route path="/products/product/:id" element={<ProductPage/>} />

@@ -63,7 +63,7 @@ const ProductPage = () => {
 
             <div className={styles.productPageMeta}>
               <span>⭐ {product.rating || "4.5"}</span>
-              <span>🚚 Free Delivery</span>
+              <span>🚚 Delivery</span>
               <span>🔒 Secure Payment</span>
             </div>
 

@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { cart, setCart, removeFromCart, increaseQty, decreaseQty } = useCart();
+  const { cart, removeFromCart, increaseQty, decreaseQty } = useCart();
 
   // ✅ Calculate total dynamically
   const total = cart.reduce((acc, item) => {
@@ -74,9 +74,8 @@ export default function Cart() {
             <h2>Total: ₹{total.toLocaleString()}</h2>
             <button
               className={styles.checkoutBtn}
-              onClick={() => {
-                setCart([]);          // ✅ clear cart
-                navigate("/success"); // ✅ go to thank you page
+              onClick={() => {         // ✅ clear cart
+                navigate("/Checkout"); // ✅ go to thank you page
               }}
             >
               Place Order
