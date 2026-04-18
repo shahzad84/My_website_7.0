@@ -12,6 +12,7 @@ import {
   normalizeProduct,
   normalizeVideo,
 } from "../data/siteContent";
+
 // This creates a global “box” where data will live.
 const SiteContentContext = createContext(null);
 
@@ -40,6 +41,7 @@ export function SiteContentProvider({ children }) {
   const [videos, setVideos] = useState(defaultVideos);
   // shows loading screen
   const [loading, setLoading] = useState(true);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
   // true = using default data
   const [usingFallback, setUsingFallback] = useState({
     courses: true,
@@ -48,6 +50,20 @@ export function SiteContentProvider({ children }) {
   });
 
   useEffect(() => {
+    const goOnline = () => setIsOnline(true);
+    const goOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", goOnline);
+    window.addEventListener("offline", goOffline);
+
+    return () => {
+      window.removeEventListener("online", goOnline);
+      window.removeEventListener("offline", goOffline);
+    };
+  }, []);
+
+  useEffect(() => {
+     if (!isOnline) return; 
     // prevents memory leaks if component unmounts
     let ignore = false;
 
@@ -119,11 +135,11 @@ export function SiteContentProvider({ children }) {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [isOnline]);
 
   return (
     <SiteContentContext.Provider
-      value={{ courses, products, videos, loading, usingFallback }}
+      value={{ courses, products, videos, loading, usingFallback, isOnline }}
     >
       {children}
     </SiteContentContext.Provider>

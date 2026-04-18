@@ -4,31 +4,35 @@ import { useNavigate } from "react-router-dom";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
+import NoInternet from "./NoInternet";
+import LoadingScreen from "./LoadingScreen";
+import EmptyState from "./EmptyState";
 
 export default function Product() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
-  // ✅ GLOBAL DATA (from Google Sheets)
-  const { products, loading } = useSiteContent();
-
   const [ratios, setRatios] = useState({});
 
-  // ✅ loading state
-  if (loading) {
-    return (
-      <section className={styles.products}>
-        <p className={styles.loadingText}>Loading products...</p>
-      </section>
-    );
+  const { products, loading, isOnline } = useSiteContent();
+
+  // ✅ 1. INTERNET FIRST
+  if (!isOnline) {
+    return <NoInternet />;
   }
 
-  // ✅ empty state
+  // ✅ 2. LOADING
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  // ✅ 3. EMPTY STATE
   if (!products || products.length === 0) {
     return (
-      <section className={styles.products}>
-        <p className={styles.emptyText}>No products available.</p>
-      </section>
+      <EmptyState
+        title="No Products"
+        message="No products available right now."
+      />
     );
   }
 

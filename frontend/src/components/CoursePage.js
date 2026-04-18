@@ -4,30 +4,53 @@ import styles from "./CoursePage.module.css";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
+import NoInternet from "./NoInternet";
+import LoadingScreen from "./LoadingScreen";
+import EmptyState from "./EmptyState";
 
 const CoursePage = () => {
   const { id } = useParams();
-  const { courses } = useSiteContent();
+  const { courses, loading, isOnline } = useSiteContent();
+
   const location = useLocation();
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
-  // ✅ state first
+  // ✅ 1. INTERNET FIRST
+  if (!isOnline) {
+    return <NoInternet />;
+  }
+
+  // ✅ 2. LOADING
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  // ✅ 3. GET COURSE (state → fallback)
   let course = location.state;
 
-  // ✅ fallback
   if (!course) {
     course = courses.find((c) => String(c.id) === String(id));
   }
 
+  // ✅ 4. EMPTY STATE
   if (!course) {
-    return <p>No course found</p>;
+    return (
+      <EmptyState
+        title="Course not found"
+        message="This course does not exist or was removed."
+        showBack
+        onBack={() => navigate(-1)}
+        label="← Back"
+      />
+    );
   }
 
   return (
-    <section className={styles.coursePage}> {/* 🔥 SAME AS course */}
+    <section className={styles.coursePage}>
+      {" "}
+      {/* 🔥 SAME AS course */}
       <div className={styles.courseContainer}>
-
         {/* BACK */}
         <button className={styles.backBtn} onClick={() => navigate(-1)}>
           ← Back
@@ -35,28 +58,23 @@ const CoursePage = () => {
 
         {/* HERO */}
         <div className={styles.courseHero}>
-
           {/* IMAGE */}
           <div className={styles.courseImage}>
-            <img
-              src={course.image || images.phone}
-              alt={course.title}
-            />
+            <img src={course.image || images.phone} alt={course.title} />
           </div>
 
           {/* CONTENT */}
           <div className={styles.courseInfo}>
-
             {/* TAG */}
             <span
-                className={`${styles.courseTag} ${
-                  course.level === "Beginner"
-                    ? styles.tagBeginner
-                    : course.level === "Intermediate"
+              className={`${styles.courseTag} ${
+                course.level === "Beginner"
+                  ? styles.tagBeginner
+                  : course.level === "Intermediate"
                     ? styles.tagInter
                     : styles.tagAdv
-                }`}
-              >
+              }`}
+            >
               {course.level}
             </span>
 
@@ -99,7 +117,6 @@ const CoursePage = () => {
                 Add to Cart
               </button>
             </div>
-
           </div>
         </div>
 
@@ -113,7 +130,6 @@ const CoursePage = () => {
             ))}
           </ul>
         </div>
-
       </div>
     </section>
   );

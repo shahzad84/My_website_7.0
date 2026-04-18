@@ -4,29 +4,34 @@ import { useNavigate } from "react-router-dom";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
+import NoInternet from "./NoInternet";
+import LoadingScreen from "./LoadingScreen";
+import EmptyState from "./EmptyState";
 
 const Courses = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
   // 🔥 dynamic data from Google Sheets
-  const { courses, loading, usingFallback } = useSiteContent();
+  const { courses, loading, usingFallback, isOnline } = useSiteContent();
 
-  // ✅ loading state
-  if (loading) {
-    return (
-      <section className={styles.courses}>
-        <p className={styles.loadingText}>Loading courses...</p>
-      </section>
-    );
+  // ✅ 1. INTERNET FIRST
+  if (!isOnline) {
+    return <NoInternet />;
   }
 
-  // ✅ empty state
+  // ✅ 2. LOADING
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  // ✅ 3. EMPTY STATE
   if (!courses || courses.length === 0) {
     return (
-      <section className={styles.courses}>
-        <p className={styles.emptyText}>No courses available right now.</p>
-      </section>
+      <EmptyState
+        title="No Courses"
+        message="No courses available right now."
+      />
     );
   }
 
@@ -77,8 +82,8 @@ const Courses = () => {
                   course.level === "Beginner"
                     ? styles.tagBeginner
                     : course.level === "Intermediate"
-                    ? styles.tagInter
-                    : styles.tagAdv
+                      ? styles.tagInter
+                      : styles.tagAdv
                 }`}
               >
                 {course.level}

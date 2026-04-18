@@ -1,10 +1,15 @@
 import styles from "./Youtube.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSiteContent } from "../context/SiteContentContext";
+import NoInternet from "./NoInternet";
+import LoadingScreen from "./LoadingScreen";
+import EmptyState from "./EmptyState";
+
 
 export default function YoutubeCourse() {
   const navigate = useNavigate();
-  const { videos } = useSiteContent();
+  const { videos, loading, isOnline } = useSiteContent();
+  
   const { playlist } = useParams();
 
   const decodedPlaylist = decodeURIComponent(playlist);
@@ -12,12 +17,26 @@ export default function YoutubeCourse() {
   console.log("URL PLAYLIST:", decodedPlaylist);
 
   // ✅ FILTER CORRECTLY
+
+  if (!isOnline) {
+    return <NoInternet />;
+  }
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
   const filteredVideos = videos.filter((v) => v.playlist === decodedPlaylist);
 
-  console.log("FILTERED:", filteredVideos);
+  // console.log("FILTERED:", filteredVideos);
 
   if (!filteredVideos.length) {
-    return <p>No videos found</p>;
+    return (<EmptyState
+      title={decodedPlaylist}
+      message="No videos found in this playlist"
+      showBack
+      onBack={() => navigate(-1)}
+      label="→ Back"
+    />);
   }
 
   return (

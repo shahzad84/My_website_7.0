@@ -5,11 +5,12 @@ import styles from "./CheckoutFormCart.module.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { createOrder } from "../api/googleSheetApi";
+import NoInternet from "./NoInternet";
 
 export default function CheckoutFormCart() {
   const { cart, setCart } = useCart();
   const navigate = useNavigate();
-
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,6 +22,19 @@ export default function CheckoutFormCart() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    const goOnline = () => setIsOnline(true);
+    const goOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", goOnline);
+    window.addEventListener("offline", goOffline);
+
+    return () => {
+      window.removeEventListener("online", goOnline);
+      window.removeEventListener("offline", goOffline);
+    };
+  }, []);
 
   // ✅ Load saved data
   useEffect(() => {
@@ -39,9 +53,9 @@ export default function CheckoutFormCart() {
     return /^\+?[1-9]\d{6,14}$/.test(cleaned);
   };
   const totalPrice = cart.reduce((acc, item) => {
-  const price = parseInt(item.price?.replace(/[^\d]/g, ""), 10) || 0;
-  return acc + price * item.qty;
-}, 0);
+    const price = parseInt(item.price?.replace(/[^\d]/g, ""), 10) || 0;
+    return acc + price * item.qty;
+  }, 0);
   // ✅ Handle input changes (same pattern)
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -83,7 +97,14 @@ export default function CheckoutFormCart() {
   // ✅ Submit handler
   const handleSubmit = async () => {
     let newErrors = {};
-
+    if (!isOnline) {
+      setStatus("❌ No internet connection");
+      return;
+    }
+    if (!cart.length) {
+      setStatus("❌ Cart is empty");
+      return;
+    }
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     }
@@ -127,7 +148,7 @@ export default function CheckoutFormCart() {
           const price = parseInt(item.price?.replace(/[^\d]/g, ""), 10) || 0;
           return acc + price * item.qty;
         }, 0),
-        totalPrice, 
+        totalPrice,
         orderId: Date.now(),
         date: new Date().toISOString(),
       };
@@ -142,6 +163,9 @@ export default function CheckoutFormCart() {
       setLoading(false);
     }
   };
+  if (!isOnline) {
+    return <NoInternet />;
+  }
 
   return (
     <div className={styles.checkoutFormCart}>
@@ -231,10 +255,14 @@ export default function CheckoutFormCart() {
           {/* BUTTON */}
           <button
             onClick={handleSubmit}
-            disabled={loading}
+            disabled={loading || !isOnline}
             className={styles.checkoutFormCartSubmitBtn}
           >
-            {loading ? "Placing Order..." : "Confirm Order"}
+            {!isOnline
+  ? "No Internet"
+  : loading
+  ? "Placing Order..."
+  : "Confirm Order"}
           </button>
 
           {status && <p className={styles.checkoutFormCartError}>{status}</p>}

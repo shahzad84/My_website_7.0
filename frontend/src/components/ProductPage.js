@@ -4,42 +4,62 @@ import styles from "./ProductPage.module.css";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
 import { images } from "./images";
+import NoInternet from "./NoInternet";
+import LoadingScreen from "./LoadingScreen";
+import EmptyState from "./EmptyState";
 
 const ProductPage = () => {
-  const { id } = useParams(); // ✅ URL ID
-  const { products } = useSiteContent(); // ✅ global data
+  const { id } = useParams();
+  const { products, loading, isOnline } = useSiteContent();
+
   const location = useLocation();
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
-  // ✅ try state first
+  // ✅ 1. INTERNET FIRST
+  if (!isOnline) {
+    return <NoInternet />;
+  }
+
+  // ✅ 2. LOADING
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  // ✅ 3. GET PRODUCT (state → fallback)
   let product = location.state;
 
-  // ✅ fallback (refresh safe)
   if (!product) {
     product = products.find((p) => String(p.id) === String(id));
   }
 
+  // ✅ 4. EMPTY STATE
   if (!product) {
-    return <p>No product found</p>;
+    return (
+      <EmptyState
+        title="Product not found"
+        message="This product does not exist or was removed."
+        showBack
+        onBack={() => navigate(-1)}
+        label="← Back"
+      />
+    );
   }
 
   return (
     <section className={styles.productPage}>
       <div className={styles.productPageContainer}>
-
-        <button className={styles.productPageBackBtn} onClick={() => navigate(-1)}>
+        <button
+          className={styles.productPageBackBtn}
+          onClick={() => navigate(-1)}
+        >
           ← Back
         </button>
 
         <div className={styles.productPageHero}>
-
           {/* IMAGE */}
           <div className={styles.productPageImage}>
-            <img
-              src={product.image || images.phone}
-              alt={product.title}
-            />
+            <img src={product.image || images.phone} alt={product.title} />
           </div>
 
           {/* CONTENT */}
@@ -49,14 +69,14 @@ const ProductPage = () => {
                 product.category === "Accessories"
                   ? styles.tagAccessories
                   : product.category === "Audio"
-                  ? styles.tagAudio
-                  : product.category === "Tech"
-                  ? styles.tagTech
-                  : styles.tagWearables
+                    ? styles.tagAudio
+                    : product.category === "Tech"
+                      ? styles.tagTech
+                      : styles.tagWearables
               }`}
             >
-                {product.category}
-              </div>
+              {product.category}
+            </div>
 
             <h1>{product.title}</h1>
             <p>{product.desc}</p>
@@ -107,7 +127,6 @@ const ProductPage = () => {
             ))}
           </ul>
         </div>
-
       </div>
     </section>
   );

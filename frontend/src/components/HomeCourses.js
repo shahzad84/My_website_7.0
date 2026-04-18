@@ -4,17 +4,38 @@ import styles from "./Courses.module.css";
 import { images } from "./images";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
+import NoInternet from "./NoInternet";
+import LoadingScreen from "./LoadingScreen";
+import EmptyState from "./EmptyState";
 
 const HomeCourses = () => {
-  const { courses, loading } = useSiteContent();
+  const { courses, loading, isOnline } = useSiteContent();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  // ✅ 1. INTERNET
+  if (!isOnline) {
+    return <NoInternet />;
+  }
 
+  // ✅ 2. LOADING
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  // ✅ 3. EMPTY
+  if (!courses || courses.length === 0) {
+    return (
+      <EmptyState
+        title="No Courses"
+        message="No courses available right now."
+      />
+    );
+  }
   const featuredCourses = (courses || []).length
-  ? courses.some((c) => c.featured)
-    ? courses.filter((c) => c.featured).slice(0, 3)
-    : courses.slice(0, 3)
-  : [];
+    ? courses.some((c) => c.featured)
+      ? courses.filter((c) => c.featured).slice(0, 3)
+      : courses.slice(0, 3)
+    : [];
 
   return (
     <section className={styles.courses}>
@@ -24,7 +45,10 @@ const HomeCourses = () => {
           <h2 className={styles.sectionTitle}>Featured Courses</h2>
         </div>
 
-        <button className={styles.btnOutline} onClick={() => navigate("/courses")}>
+        <button
+          className={styles.btnOutline}
+          onClick={() => navigate("/courses")}
+        >
           View All Courses →
         </button>
       </div>
@@ -52,8 +76,8 @@ const HomeCourses = () => {
                   course.level === "Beginner"
                     ? styles.tagBeginner
                     : course.level === "Intermediate"
-                    ? styles.tagInter
-                    : styles.tagAdv
+                      ? styles.tagInter
+                      : styles.tagAdv
                 }`}
               >
                 {course.level}

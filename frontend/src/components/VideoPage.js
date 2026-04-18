@@ -2,15 +2,26 @@ import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSiteContent } from "../context/SiteContentContext";
 import styles from "./VideoPage.module.css";
-
+import NoInternet from "./NoInternet";
+import LoadingScreen from "./LoadingScreen";
+import EmptyState from "./EmptyState";
 const VideoPage = () => {
   const { id } = useParams();
-  const { videos } = useSiteContent();
+  const { videos, loading, isOnline } = useSiteContent();
+  
   const location = useLocation();
   const navigate = useNavigate();
 
   // ✅ state first
   let video = location.state;
+
+  if (!isOnline) {
+    return <NoInternet />;
+  }
+
+  if (loading) {
+    return <LoadingScreen />;
+  };
 
   // ✅ fallback
   if (!video) {
@@ -18,7 +29,15 @@ const VideoPage = () => {
   }
 
   if (!video) {
-    return <p>No video found</p>;
+    return (
+    <EmptyState
+      title="Video not found"
+      message="This video does not exist or was removed."
+      showBack
+      onBack={() => navigate(-1)}
+      label="← Back"
+    />
+  );
   }
 
   return (
