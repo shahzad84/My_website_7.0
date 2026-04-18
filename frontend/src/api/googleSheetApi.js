@@ -110,6 +110,20 @@ export const fetchProducts = async () => {
 };
 
 export const fetchVideos = async () => {
-  const response = await postToSheet({ action: DEFAULT_ACTIONS.videos });
-  return extractCollection(response, "videos");
+  const response = await postToSheet({
+    action: "get_videos", // 🔥 FORCE THIS
+  });
+
+  console.log("VIDEOS API RESPONSE:", response);
+
+  const videos =
+    response?.videos ||
+    response?.data?.videos ||
+    [];
+
+  return videos.map((v) => ({
+    ...v,
+    videoId: v.videoId || v.videoid,
+    playlist: v.playlist?.trim(),
+  }));
 };

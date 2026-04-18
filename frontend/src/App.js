@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Success from "./components/Success";
 import CheckoutFormCart from "./components/CheckoutFormCart";
-
+import YoutubeCourse from "./components/YoutubeCourse";
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
         <Route path="/products" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/youtube" element={<Youtube />} />
+        <Route path="/youtube/course/:playlist" element={<YoutubeCourse />} />
         <Route path="/success" element={<Success />} />
         <Route path="/checkout" element={<CheckoutFormCart />} />
         <Route path="/youtube/video/:id" element={<VideoPage />} />

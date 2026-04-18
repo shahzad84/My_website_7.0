@@ -418,19 +418,36 @@ export const normalizeProduct = (row, index) => {
 };
 
 export const normalizeVideo = (row, index) => {
-  const videoId = String(getField(row, ["videoId", "video_id", "youtubeId"]) || "").trim();
+  const videoId = String(
+    getField(row, ["videoId", "video_id", "youtubeId"]) || ""
+  ).trim();
 
+  // ✅ DEFINE playlist FIRST
+  const playlist = getField(row, ["playlist", "course", "series"]) || "Uncategorized";
+
+  const playlistDesc = getField(row, [
+    "playlistDesc",
+    "playlist_description",
+  ]);
   return {
-    id: String(getField(row, ["id", "videoNo", "videoNumber"]) || `${index + 1}`),
+    id: String(
+      getField(row, ["id", "videoNo", "videoNumber"]) || `${index + 1}`
+    ),
     title: getField(row, ["title", "name", "videoTitle"]) || `Video ${index + 1}`,
     desc: getField(row, ["desc", "description"]) || "",
     category: getField(row, ["category"]) || "Tutorial",
     duration: getField(row, ["duration"]) || "",
     level: getField(row, ["level"]) || "Beginner",
+
     videoId,
+
+    // ✅ NOW SAFE TO USE
+    playlist: String(playlist).trim(),
+    playlistDesc: playlistDesc || "",
     thumbnail:
       resolveImage(getField(row, ["thumbnail", "image", "imageUrl"])) ||
       `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+
     details: parseList(
       getField(row, ["details", "points", "highlights"]),
       [
