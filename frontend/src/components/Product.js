@@ -43,7 +43,8 @@ export default function Product() {
           <p className={styles.sectionLabel}>→ Products</p>
           <h2 className={styles.sectionTitle}>Featured Items</h2>
           <p className={styles.sectionDesc}>
-            Master in-demand skills with structured courses designed to help you build real-world projects.
+             Explore products designed for everyday life.
+  Quality you can trust, simplicity you’ll love.
           </p>
         </div>
       </div>

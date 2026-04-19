@@ -148,36 +148,36 @@ const Contact = () => {
 
           <div className={styles.contactLinks}>
 
-            <a href="mailto:hello@devstore.in" className={styles.contactLink}>
+            {/* <a href="mailto:hello@devstore.in" className={styles.contactLink}>
               <div className={styles.contactIcon}>✉️</div>
               <div>
                 <div className={styles.lbl}>Email</div>
                 <div className={styles.val}>hello@devstore.in</div>
               </div>
-            </a>
+            </a> */}
 
-            <a href="https://youtube.com" className={styles.contactLink} target="_blank" rel="noreferrer">
+            <a href="https://youtube.com/@devstore.i" className={styles.contactLink} target="_blank" rel="noreferrer">
               <div className={styles.contactIcon}>📺</div>
               <div>
                 <div className={styles.lbl}>YouTube</div>
-                <div className={styles.val}>youtube.com/@channel</div>
+                <div className={styles.val}>@devstore.i</div>
               </div>
             </a>
 
-            <a href="https://twitter.com" className={styles.contactLink} target="_blank" rel="noreferrer">
+            {/* <a href="https://twitter.com" className={styles.contactLink} target="_blank" rel="noreferrer">
               <div className={styles.contactIcon}>𝕏</div>
               <div>
                 <div className={styles.lbl}>Twitter / X</div>
                 <div className={styles.val}>@handle</div>
               </div>
-            </a>
+            </a> */}
 
             {/* ✅ ADDED INSTAGRAM BACK */}
-            <a href="https://instagram.com" className={styles.contactLink} target="_blank" rel="noreferrer">
+            <a href="https://instagram.com/devstore.in" className={styles.contactLink} target="_blank" rel="noreferrer">
               <div className={styles.contactIcon}>📸</div>
               <div>
                 <div className={styles.lbl}>Instagram</div>
-                <div className={styles.val}>@yourhandle</div>
+                <div className={styles.val}>@devstore.in</div>
               </div>
             </a>
 

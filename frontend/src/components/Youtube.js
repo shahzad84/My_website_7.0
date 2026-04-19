@@ -50,7 +50,7 @@ const Youtube = () => {
             </h2>
 
             <p className={styles.sectionDesc}>
-              Watch tutorials, build real projects, and level up your frontend
+              Watch tutorials, build real projects, and level up your
               skills.
             </p>
           </div>

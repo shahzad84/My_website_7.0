@@ -16,16 +16,16 @@ const About = () => {
 const devStore = {
   name: "DevStore",
   focus: [
-    "Coding Education",
-    "Digital Products",
-    "YouTube Content"
+    "Software Development",
+    "AI Solutions",
+    "Education & Products",
   ],
   stack: [
     "React", "Node.js",
-    "Python", "Flutter"
+    "Python", "AI/ML",
   ],
   mission: () => {
-    return "Level up devs worldwide";
+    return "Build and scale ideas into real-world products";
   }
 };`}
             </pre>
@@ -38,18 +38,21 @@ const devStore = {
         <div className={styles.aboutContent}>
           <div className={styles.sectionLabel}>→ About DevStore</div>
 
-          <h2 className={styles.sectionTitle}>We Teach Code & Ship Products</h2>
+          <h2 className={styles.sectionTitle}>We Build & Ship</h2>
 
           <p className={styles.sectionDesc}>
-            DevStore is a one-stop platform for developers at every level.
-            Whether you want to learn a new skill, grab a ready-made project, or
-            follow along on YouTube — we've got you covered.
+            DevStore is a full-stack platform where ideas turn into real
+            products. We build custom software, develop AI-powered solutions,
+            and create high-quality digital experiences for businesses and
+            developers.
           </p>
 
           <p className={styles.sectionDesc}>
-            We believe in learning by building real things. Our courses are
-            project-based, our products are production-ready, and our community
-            is always growing.
+            Alongside our services, we offer premium, project-based courses — so
+            you don’t just learn, you build, launch, and grow.
+          </p>
+          <p className={styles.sectionDesc}>
+            From concept to deployment — we help you at every stage.
           </p>
 
           {/* SKILLS */}
@@ -57,10 +60,10 @@ const devStore = {
             <span className={styles.skillTag}>React</span>
             <span className={styles.skillTag}>Node.js</span>
             <span className={styles.skillTag}>Python</span>
-            <span className={styles.skillTag}>Flutter</span>
-            <span className={styles.skillTag}>Next.js</span>
+            <span className={styles.skillTag}>AI/ML</span>
+            <span className={styles.skillTag}>LLM</span>
             <span className={styles.skillTag}>MongoDB</span>
-            <span className={styles.skillTag}>UI/UX</span>
+            <span className={styles.skillTag}>NLP</span>
             <span className={styles.skillTag}>DSA</span>
           </div>
         </div>

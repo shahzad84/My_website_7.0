@@ -10,26 +10,32 @@ const Hero = () => {
       <div className={styles.heroGlow2}></div>
 
       <div className={styles.heroContent}>
-        <div className={styles.heroBadge}>
-          ● LIVE — New Course Dropped
-        </div>
+        <div className={styles.heroBadge}>● LIVE — New Course Dropped</div>
 
         <h1>
-          Code.<br />
-          <span className={styles.line2}>Build.</span><br />
+          Code.
+          <br />
+          <span className={styles.line2}>Build.</span>
+          <br />
           <span className={styles.line3}>Sell.</span>
         </h1>
 
         <p className={styles.heroSub}>
-          Premium coding courses, developer tools, and digital products —
-          everything you need to go from idea to income.
+          We develop software, build AI solutions, and provide premium courses —
+          everything you need to turn ideas into reality.
         </p>
 
         <div className={styles.heroBtns}>
-          <button className={styles.btnPrimary} onClick={() => navigate("/courses")}>
+          <button
+            className={styles.btnPrimary}
+            onClick={() => navigate("/courses")}
+          >
             Browse Courses →
           </button>
-          <button className={styles.btnOutline} onClick={() => navigate("/products")}>
+          <button
+            className={styles.btnOutline}
+            onClick={() => navigate("/products")}
+          >
             ⚡ Shop Products
           </button>
         </div>
@@ -37,14 +43,14 @@ const Hero = () => {
         <div className={styles.heroStats}>
           <div className={styles.statItem}>
             <div className={styles.statNum}>
-              12<span>k+</span>
+              1<span>k+</span>
             </div>
             <div className={styles.statLabel}>Students</div>
           </div>
 
           <div className={styles.statItem}>
             <div className={styles.statNum}>
-              48<span>+</span>
+              8<span>+</span>
             </div>
             <div className={styles.statLabel}>Courses</div>
           </div>
@@ -58,7 +64,7 @@ const Hero = () => {
 
           <div className={styles.statItem}>
             <div className={styles.statNum}>
-              500<span>+</span>
+              50<span>+</span>
             </div>
             <div className={styles.statLabel}>Products Sold</div>
           </div>
