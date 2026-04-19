@@ -345,3 +345,75 @@
     display: none;
   }
 }
+
+/* ================= MOBILE FIX ================= */
+
+@media (max-width: 768px) {
+  .about {
+    padding: 3rem 1rem;
+  }
+
+  .aboutInner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* 👇 SHOW TEXT FIRST (better UX) */
+  .aboutContent {
+    order: 1;
+  }
+
+  .aboutVisual {
+    order: 2;
+  }
+
+  /* CARD */
+  .aboutCard {
+    padding: 1.4rem;
+    border-radius: 10px;
+  }
+
+  /* CODE BLOCK FIX */
+  .aboutCode {
+    font-size: 0.72rem;
+    line-height: 1.6;
+    white-space: pre-wrap;   /* 🔥 VERY IMPORTANT */
+    word-break: break-word;  /* prevents overflow */
+  }
+
+  /* REMOVE FLOATING BADGE CLUTTER */
+  .aboutFloating {
+    position: static;
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 0.65rem;
+  }
+
+  /* TEXT */
+  .sectionTitle {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .sectionDesc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* SKILLS */
+  .skillsGrid {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .skillTag {
+    font-size: 0.65rem;
+    padding: 0.45rem 0.8rem;
+  }
+
+  /* CLEANUP */
+  .cornerBrackets,
+  .cornerBrackets2 {
+    display: none;
+  }
+}
