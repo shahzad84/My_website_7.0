@@ -14,7 +14,7 @@ export default function YoutubeCourse() {
 
   const decodedPlaylist = decodeURIComponent(playlist);
 
-  console.log("URL PLAYLIST:", decodedPlaylist);
+  // console.log("URL PLAYLIST:", decodedPlaylist);
 
   // ✅ FILTER CORRECTLY
 

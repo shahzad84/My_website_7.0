@@ -95,7 +95,7 @@ export const fetchCourses = async () => {
     action: DEFAULT_ACTIONS.courses,
   });
 
-  console.log("FULL API RESPONSE:", response);
+  // console.log("FULL API RESPONSE:", response);
 
   const courses =
     response?.courses ||
@@ -118,7 +118,7 @@ export const fetchVideos = async () => {
     action: "get_videos", // 🔥 FORCE THIS
   });
 
-  console.log("VIDEOS API RESPONSE:", response);
+  // console.log("VIDEOS API RESPONSE:", response);
 
   const videos =
     response?.videos ||
