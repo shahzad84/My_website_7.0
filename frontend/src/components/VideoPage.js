@@ -8,7 +8,7 @@ import EmptyState from "./EmptyState";
 const VideoPage = () => {
   const { id } = useParams();
   const { videos, loading, isOnline } = useSiteContent();
-  
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const VideoPage = () => {
 
   if (loading) {
     return <LoadingScreen />;
-  };
+  }
 
   // ✅ fallback
   if (!video) {
@@ -30,44 +30,44 @@ const VideoPage = () => {
 
   if (!video) {
     return (
-    <EmptyState
-      title="Video not found"
-      message="This video does not exist or was removed."
-      showBack
-      onBack={() => navigate(-1)}
-      label="← Back"
-    />
-  );
+      <EmptyState
+        title="Video not found"
+        message="This video does not exist or was removed."
+        showBack
+        onBack={() => navigate(-1)}
+        label="← Back"
+      />
+    );
   }
 
   return (
     <section className={styles.videoPage}>
       <div className={styles.videoPageContainer}>
-
         {/* BACK */}
-        <button className={styles.videoPageBackBtn} onClick={() => navigate(-1)}>
+        <button
+          className={styles.videoPageBackBtn}
+          onClick={() => navigate(-1)}
+        >
           ← Back
         </button>
 
         {/* HERO */}
         <div className={styles.videoPagePlayer}>
-
           {/* LEFT → VIDEO */}
           <div className={styles.videoPageImage}>
             <iframe
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/${video.videoId}`}
+              src={`https://www.youtube.com/embed/${video.videoId}?playsinline=1&modestbranding=1&rel=0`}
               title={video.title}
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
               allowFullScreen
             ></iframe>
           </div>
 
           {/* RIGHT → INFO */}
           <div className={styles.videoPageInfo}>
-
             {/* TAG */}
             <span className={styles.videoPageCategoryTag}>
               {video.category}
@@ -78,10 +78,17 @@ const VideoPage = () => {
 
             {/* META */}
             <div className={styles.videoPageMeta}>
-              {video.level && <span className={styles.videoPageLevelTag}>📊 {video.level}</span>}
-              {video.duration && <span className={styles.videoPageDuration}>⏱ {video.duration}</span>}
+              {video.level && (
+                <span className={styles.videoPageLevelTag}>
+                  📊 {video.level}
+                </span>
+              )}
+              {video.duration && (
+                <span className={styles.videoPageDuration}>
+                  ⏱ {video.duration}
+                </span>
+              )}
             </div>
-
           </div>
         </div>
 
@@ -95,7 +102,6 @@ const VideoPage = () => {
             ))}
           </ul>
         </div>
-
       </div>
     </section>
   );
