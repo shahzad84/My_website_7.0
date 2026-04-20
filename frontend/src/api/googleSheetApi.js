@@ -1,4 +1,5 @@
-const BASE_URL = process.env.REACT_APP_GOOGLE_SCRIPT_URL;
+// const BASE_URL = process.env.REACT_APP_GOOGLE_SCRIPT_URL;
+const BASE_URL = "/.netlify/functions/googlesheet";
 
 const DEFAULT_ACTIONS = {
   courses: process.env.REACT_APP_GOOGLE_SHEET_COURSES_ACTION || "get_courses",
@@ -50,12 +51,15 @@ const extractCollection = (response, key) => {
 
 export const postToSheet = async (payload = {}) => {
   if (!BASE_URL) {
-    throw new Error("Missing REACT_APP_GOOGLE_SCRIPT_URL");
+    throw new Error("Missing Netlify function URL");
   }
 
   try {
     const res = await fetch(BASE_URL, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     });
 
