@@ -1,4 +1,4 @@
-// const BASE_URL = process.env.REACT_APP_GOOGLE_SCRIPT_URL;
+
 const BASE_URL = "/.netlify/functions/googlesheet";
 
 const DEFAULT_ACTIONS = {

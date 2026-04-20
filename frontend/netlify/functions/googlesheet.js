@@ -1,6 +1,4 @@
-const getScriptUrl = () =>
-  process.env.GOOGLE_SCRIPT_URL || process.env.REACT_APP_GOOGLE_SCRIPT_URL;
-
+const getScriptUrl = () => process.env.GOOGLE_SCRIPT_URL;
 const buildTargetUrl = (baseUrl, queryParams = {}) => {
   const url = new URL(baseUrl);
 
